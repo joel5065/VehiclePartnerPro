@@ -166,3 +166,73 @@ L'application supporte le français et l'anglais, avec possibilité de basculer 
 ## Licence
 
 MIT
+
+## Ajout de Produits
+
+Pour ajouter des produits à l'application, vous devez :
+
+1. Vous connecter en tant qu'administrateur
+2. Accéder à la page d'administration des produits
+3. Cliquer sur le bouton "Ajouter un produit"
+4. Remplir le formulaire avec les informations suivantes :
+   - Nom du produit
+   - Description
+   - Prix
+   - Image (URL ou upload)
+   - Catégorie
+   - Stock disponible
+   - Compatibilité avec les véhicules
+   - Note et nombre d'avis (optionnel)
+   - Statut (en vente, en promotion, etc.)
+
+### Format des Données
+
+```typescript
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl?: string;
+  categoryId: number;
+  inStock: number;
+  compatibleVehicles: number[] | null;
+  rating: number;
+  reviewCount: number;
+  isTopRated?: boolean;
+  isOnSale?: boolean;
+  salePrice?: number;
+}
+```
+
+### Exemple d'Utilisation
+
+```typescript
+// Exemple d'ajout d'un produit via l'API
+const newProduct = {
+  name: "Filtre à huile premium",
+  description: "Filtre à huile haute performance compatible avec la plupart des véhicules",
+  price: 29.99,
+  imageUrl: "https://example.com/filter.jpg",
+  categoryId: 1,
+  inStock: 50,
+  compatibleVehicles: [1, 2, 3],
+  rating: 4.5,
+  reviewCount: 0,
+  isTopRated: true
+};
+```
+
+## Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à :
+
+1. Fork le projet
+2. Créer une branche pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`)
+3. Commit vos changements (`git commit -m 'Add some AmazingFeature'`)
+4. Push vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrir une Pull Request
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.

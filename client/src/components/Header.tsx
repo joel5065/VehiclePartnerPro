@@ -38,7 +38,7 @@ const Header = () => {
       {/* Top Bar */}
       <div className="bg-primary py-1">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <p className="text-xs md:text-sm">{t("free_shipping")}</p>
+          <p className="text-xs md:text-sm">{t("Livraison gratuite")}</p>
           <div className="flex items-center space-x-4">
             <Button 
               variant="ghost" 
@@ -49,9 +49,9 @@ const Header = () => {
               <Globe className="h-3 w-3 mr-1" />
               <span>{language === 'fr' ? 'FR' : 'EN'}</span>
             </Button>
-            <Link href="/help" className="text-xs md:text-sm hover:underline">{t("help")}</Link>
-            <Link href="/orders" className="text-xs md:text-sm hover:underline">{t("track_order")}</Link>
-            <Link href="/contact" className="text-xs md:text-sm hover:underline">{t("contact")}</Link>
+            <Link href="/help" className="text-xs md:text-sm hover:underline">{t("Aide")}</Link>
+            <Link href="/orders" className="text-xs md:text-sm hover:underline">{t("Suivi de commande")}</Link>
+            <Link href="/contact" className="text-xs md:text-sm hover:underline">{t("Contact")}</Link>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@ const Header = () => {
       <div className="container mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
         <div className="flex items-center mb-3 md:mb-0">
           <Link href="/" className="text-2xl font-bold">
-            <span className="text-primary">Auto</span> Pièces de véhicule<span className="text-amber-500">CI</span>
+            <span className="text-primary">Auto</span>Parts <span className="text-amber-500">CIPlus</span>
           </Link>
         </div>
         
@@ -68,7 +68,7 @@ const Header = () => {
           <form onSubmit={handleSearch} className="relative">
             <Input
               type="text"
-              placeholder={t("search_placeholder")} 
+              placeholder={t("Rechercher")} 
               className="w-full py-2 px-4 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -108,13 +108,13 @@ const Header = () => {
           ) : (
             <Link href="/login" className="flex items-center hover:text-amber-500">
               <User className="h-4 w-4 mr-1" />
-              <span className="hidden md:inline">{t("login")}</span>
+              <span className="hidden md:inline">{t("Connexion")}</span>
             </Link>
           )}
           
           <Link href="/maintenance" className="flex items-center hover:text-amber-500">
             <Calendar className="h-4 w-4 mr-1" />
-            <span className="hidden md:inline">{t("maintenance")}</span>
+            <span className="hidden md:inline">{t("Maintenance")}</span>
           </Link>
           
           <Button 
@@ -130,7 +130,7 @@ const Header = () => {
                 </span>
               )}
             </div>
-            <span className="hidden md:inline">{t("cart")}</span>
+            <span className="hidden md:inline">{t("Panier")}</span>
           </Button>
         </div>
       </div>
@@ -141,12 +141,12 @@ const Header = () => {
           <ul className="flex flex-wrap items-center">
             <li>
               <Link href="/" className="py-2 px-3 hover:bg-gray-600 block">
-                {t("home")}
+                {t("Accueil")}
               </Link>
             </li>
             <li className="relative group">
               <div className="py-2 px-3 hover:bg-gray-600 cursor-pointer flex items-center">
-                <span>{t("shop_by_category")}</span>
+                <span>{t("Acheter par catégorie")}</span>
                 <ChevronDown className="ml-1 h-4 w-4" />
               </div>
               <div className="absolute left-0 mt-0 w-48 bg-white text-gray-800 shadow-lg rounded-md hidden group-hover:block z-10">
@@ -160,7 +160,7 @@ const Header = () => {
             </li>
             <li className="relative group">
               <div className="py-2 px-3 hover:bg-gray-600 cursor-pointer flex items-center">
-                <span>{t("shop_by_vehicle")}</span>
+                <span>{t("Acheter par véhicule")}</span>
                 <ChevronDown className="ml-1 h-4 w-4" />
               </div>
               <div className="absolute left-0 mt-0 w-48 bg-white text-gray-800 shadow-lg rounded-md hidden group-hover:block z-10">
@@ -173,17 +173,17 @@ const Header = () => {
             </li>
             <li>
               <Link href="/products?sale=true" className="py-2 px-3 hover:bg-gray-600 block">
-                {t("deals")}
+                {t("Promotions")}
               </Link>
             </li>
             <li>
               <Link href="/maintenance" className="py-2 px-3 hover:bg-gray-600 block">
-                {t("maintenance")}
+                {t("Maintenance")}
               </Link>
             </li>
             <li>
               <Link href="/guides" className="py-2 px-3 hover:bg-gray-600 block">
-                {t("diy_guides")}
+                {t("Guides DIY")}
               </Link>
             </li>
           </ul>

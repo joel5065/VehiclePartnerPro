@@ -494,6 +494,135 @@ export const translations: TranslationType = {
   },
   "product_description_10": {
     fr: "Liquide de direction assistée de qualité pour une direction fluide et des performances optimales."
+  },
+  "contact": {
+    fr: "Contact"
+  },
+  "Contactez-nous": {
+    fr: "Contactez-nous"
+  },
+  "Informations de contact": {
+    fr: "Informations de contact"
+  },
+  "Email": {
+    fr: "Email"
+  },
+  "Téléphone": {
+    fr: "Téléphone"
+  },
+  "Adresse": {
+    fr: "Adresse"
+  },
+  "Horaires d'ouverture": {
+    fr: "Horaires d'ouverture"
+  },
+  "Envoyez-nous un message": {
+    fr: "Envoyez-nous un message"
+  },
+  "Nom complet": {
+    fr: "Nom complet"
+  },
+  "Sujet": {
+    fr: "Sujet"
+  },
+  "Message": {
+    fr: "Message"
+  },
+  "Envoyer le message": {
+    fr: "Envoyer le message"
+  },
+  "FAQ": {
+    fr: "FAQ"
+  },
+  "Questions fréquentes": {
+    fr: "Questions fréquentes"
+  },
+  "Trouvez rapidement des réponses à vos questions": {
+    fr: "Trouvez rapidement des réponses à vos questions"
+  },
+  "Rechercher dans la FAQ": {
+    fr: "Rechercher dans la FAQ"
+  },
+  "Catégories": {
+    fr: "Catégories"
+  },
+  "Commandes et Livraison": {
+    fr: "Commandes et Livraison"
+  },
+  "Paiement": {
+    fr: "Paiement"
+  },
+  "Produits et Garantie": {
+    fr: "Produits et Garantie"
+  },
+  "Compte et Sécurité": {
+    fr: "Compte et Sécurité"
+  },
+  "Comment passer une commande ?": {
+    fr: "Comment passer une commande ?"
+  },
+  "Réponse passer commande": {
+    fr: "Pour passer une commande, sélectionnez les produits souhaités, ajoutez-les à votre panier, puis suivez les étapes du processus de paiement. Vous devrez fournir vos informations de livraison et choisir votre mode de paiement préféré."
+  },
+  "Quels sont les délais de livraison ?": {
+    fr: "Quels sont les délais de livraison ?"
+  },
+  "Réponse délais livraison": {
+    fr: "Les délais de livraison varient selon votre localisation. En général, comptez 2-3 jours ouvrables pour Abidjan et 3-5 jours pour les autres villes de Côte d'Ivoire."
+  },
+  "Comment suivre ma commande ?": {
+    fr: "Comment suivre ma commande ?"
+  },
+  "Réponse suivre commande": {
+    fr: "Vous pouvez suivre votre commande en vous connectant à votre compte et en accédant à la section 'Historique des commandes'. Vous y trouverez le statut de votre commande et son numéro de suivi."
+  },
+  "Quels modes de paiement acceptez-vous ?": {
+    fr: "Quels modes de paiement acceptez-vous ?"
+  },
+  "Réponse modes paiement": {
+    fr: "Nous acceptons les cartes de crédit, les virements bancaires et le paiement à la livraison pour certaines zones."
+  },
+  "Comment annuler une commande ?": {
+    fr: "Comment annuler une commande ?"
+  },
+  "Réponse annuler commande": {
+    fr: "Vous pouvez annuler votre commande dans les 24 heures suivant sa validation en contactant notre service client. Une fois la commande expédiée, l'annulation n'est plus possible."
+  },
+  "Quelle est votre politique de retour ?": {
+    fr: "Quelle est votre politique de retour ?"
+  },
+  "Réponse politique retour": {
+    fr: "Nous acceptons les retours dans les 30 jours suivant la réception du produit, à condition que l'article soit non utilisé et dans son emballage d'origine."
+  },
+  "Comment vérifier la compatibilité d'une pièce avec mon véhicule ?": {
+    fr: "Comment vérifier la compatibilité d'une pièce avec mon véhicule ?"
+  },
+  "Réponse compatibilité pièce": {
+    fr: "Utilisez notre outil de recherche de compatibilité en entrant les détails de votre véhicule (marque, modèle, année) pour trouver les pièces compatibles."
+  },
+  "Quelle est la durée de la garantie ?": {
+    fr: "Quelle est la durée de la garantie ?"
+  },
+  "Réponse durée garantie": {
+    fr: "La plupart de nos pièces sont couvertes par une garantie d'un an. Les conditions exactes varient selon le produit."
+  },
+  "Comment créer un compte ?": {
+    fr: "Comment créer un compte ?"
+  },
+  "Réponse créer compte": {
+    fr: "Cliquez sur 'S'inscrire' dans le menu supérieur et suivez les étapes pour créer votre compte. Vous aurez besoin de fournir votre email et de créer un mot de passe."
+  },
+  "Comment réinitialiser mon mot de passe ?": {
+    fr: "Comment réinitialiser mon mot de passe ?"
+  },
+  "Réponse réinitialiser mot de passe": {
+    fr: "Cliquez sur 'Mot de passe oublié' sur la page de connexion et suivez les instructions envoyées à votre adresse email."
+  },
+  "Comment mettre à jour mes informations personnelles ?": {
+    fr: "Comment mettre à jour mes informations personnelles ?"
+  },
+  "Réponse mettre à jour infos": {
+    fr: "Connectez-vous à votre compte, accédez à la section 'Profil' et modifiez les informations que vous souhaitez mettre à jour."
   }
 };
 

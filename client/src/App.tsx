@@ -14,6 +14,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import OrderHistory from "./pages/OrderHistory";
+import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
 import NotFound from "@/pages/not-found";
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
@@ -32,6 +34,8 @@ function Router() {
       <Route path="/register" component={Register} />
       <Route path="/profile" component={Profile} />
       <Route path="/orders" component={OrderHistory} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/faq" component={FAQ} />
       <Route component={NotFound} />
     </Switch>
   );
