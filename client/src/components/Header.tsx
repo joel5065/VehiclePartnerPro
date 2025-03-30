@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
+import { useLanguage } from "../context/LanguageContext";
 import CartDrawer from "./CartDrawer";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -11,14 +12,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Search, User, ShoppingCart, Calendar, ChevronDown } from "lucide-react";
+import { Search, User, ShoppingCart, Calendar, ChevronDown, Globe } from "lucide-react";
 
 const Header = () => {
   const [location, navigate] = useLocation();
   const { user, isAuthenticated, logout } = useAuth();
   const { cartCount } = useCart();
+  const { t, language, setLanguage } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
   const [isCartOpen, setIsCartOpen] = useState(false);
+  
+  const toggleLanguage = () => {
+    setLanguage(language === 'fr' ? 'en' : 'fr');
+  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,11 +38,20 @@ const Header = () => {
       {/* Top Bar */}
       <div className="bg-primary py-1">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <p className="text-xs md:text-sm">Free shipping on orders over $50</p>
+          <p className="text-xs md:text-sm">{t("free_shipping")}</p>
           <div className="flex items-center space-x-4">
-            <Link href="/help" className="text-xs md:text-sm hover:underline">Help</Link>
-            <Link href="/orders" className="text-xs md:text-sm hover:underline">Track Order</Link>
-            <Link href="/contact" className="text-xs md:text-sm hover:underline">Contact</Link>
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="text-xs md:text-sm p-0 h-auto hover:text-amber-200 flex items-center"
+              onClick={toggleLanguage}
+            >
+              <Globe className="h-3 w-3 mr-1" />
+              <span>{language === 'fr' ? 'FR' : 'EN'}</span>
+            </Button>
+            <Link href="/help" className="text-xs md:text-sm hover:underline">{t("help")}</Link>
+            <Link href="/orders" className="text-xs md:text-sm hover:underline">{t("track_order")}</Link>
+            <Link href="/contact" className="text-xs md:text-sm hover:underline">{t("contact")}</Link>
           </div>
         </div>
       </div>
@@ -53,7 +68,7 @@ const Header = () => {
           <form onSubmit={handleSearch} className="relative">
             <Input
               type="text"
-              placeholder="Search parts, categories, or vehicle..." 
+              placeholder={t("search_placeholder")} 
               className="w-full py-2 px-4 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -80,26 +95,26 @@ const Header = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem asChild>
-                  <Link href="/profile">My Profile</Link>
+                  <Link href="/profile">{t("my_profile")}</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/orders">Order History</Link>
+                  <Link href="/orders">{t("order_history")}</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={logout}>
-                  Logout
+                  {t("logout")}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <Link href="/login" className="flex items-center hover:text-amber-500">
               <User className="h-4 w-4 mr-1" />
-              <span className="hidden md:inline">Login</span>
+              <span className="hidden md:inline">{t("login")}</span>
             </Link>
           )}
           
           <Link href="/maintenance" className="flex items-center hover:text-amber-500">
             <Calendar className="h-4 w-4 mr-1" />
-            <span className="hidden md:inline">Maintenance</span>
+            <span className="hidden md:inline">{t("maintenance")}</span>
           </Link>
           
           <Button 
@@ -115,7 +130,7 @@ const Header = () => {
                 </span>
               )}
             </div>
-            <span className="hidden md:inline">Cart</span>
+            <span className="hidden md:inline">{t("cart")}</span>
           </Button>
         </div>
       </div>
@@ -126,26 +141,26 @@ const Header = () => {
           <ul className="flex flex-wrap items-center">
             <li>
               <Link href="/" className="py-2 px-3 hover:bg-gray-600 block">
-                Home
+                {t("home")}
               </Link>
             </li>
             <li className="relative group">
               <div className="py-2 px-3 hover:bg-gray-600 cursor-pointer flex items-center">
-                <span>Shop by Category</span>
+                <span>{t("shop_by_category")}</span>
                 <ChevronDown className="ml-1 h-4 w-4" />
               </div>
               <div className="absolute left-0 mt-0 w-48 bg-white text-gray-800 shadow-lg rounded-md hidden group-hover:block z-10">
-                <Link href="/products?category=1" className="block px-4 py-2 hover:bg-gray-100">Oil & Fluids</Link>
-                <Link href="/products?category=2" className="block px-4 py-2 hover:bg-gray-100">Batteries</Link>
-                <Link href="/products?category=3" className="block px-4 py-2 hover:bg-gray-100">Engine Parts</Link>
-                <Link href="/products?category=4" className="block px-4 py-2 hover:bg-gray-100">Brakes</Link>
-                <Link href="/products?category=5" className="block px-4 py-2 hover:bg-gray-100">Electrical</Link>
-                <Link href="/products?category=6" className="block px-4 py-2 hover:bg-gray-100">Filters</Link>
+                <Link href="/products?category=1" className="block px-4 py-2 hover:bg-gray-100">{t("oil_fluids")}</Link>
+                <Link href="/products?category=2" className="block px-4 py-2 hover:bg-gray-100">{t("batteries")}</Link>
+                <Link href="/products?category=3" className="block px-4 py-2 hover:bg-gray-100">{t("engine_parts")}</Link>
+                <Link href="/products?category=4" className="block px-4 py-2 hover:bg-gray-100">{t("brakes")}</Link>
+                <Link href="/products?category=5" className="block px-4 py-2 hover:bg-gray-100">{t("electrical")}</Link>
+                <Link href="/products?category=6" className="block px-4 py-2 hover:bg-gray-100">{t("filters")}</Link>
               </div>
             </li>
             <li className="relative group">
               <div className="py-2 px-3 hover:bg-gray-600 cursor-pointer flex items-center">
-                <span>Shop by Vehicle</span>
+                <span>{t("shop_by_vehicle")}</span>
                 <ChevronDown className="ml-1 h-4 w-4" />
               </div>
               <div className="absolute left-0 mt-0 w-48 bg-white text-gray-800 shadow-lg rounded-md hidden group-hover:block z-10">
@@ -158,17 +173,17 @@ const Header = () => {
             </li>
             <li>
               <Link href="/products?sale=true" className="py-2 px-3 hover:bg-gray-600 block">
-                Deals
+                {t("deals")}
               </Link>
             </li>
             <li>
               <Link href="/maintenance" className="py-2 px-3 hover:bg-gray-600 block">
-                Maintenance
+                {t("maintenance")}
               </Link>
             </li>
             <li>
               <Link href="/guides" className="py-2 px-3 hover:bg-gray-600 block">
-                DIY Guides
+                {t("diy_guides")}
               </Link>
             </li>
           </ul>
