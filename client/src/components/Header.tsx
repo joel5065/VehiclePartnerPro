@@ -60,7 +60,7 @@ const Header = () => {
       <div className="container mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
         <div className="flex items-center mb-3 md:mb-0">
           <Link href="/" className="text-2xl font-bold">
-            <span className="text-primary">Auto</span>Parts<span className="text-amber-500">Plus</span>
+            <span className="text-primary">Auto</span> Parts <span className="text-amber-500">CI</span>
           </Link>
         </div>
         

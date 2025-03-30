@@ -1,4 +1,4 @@
-# AutoPartPlus - E-commerce de pièces automobiles
+# Auto Parts CI - E-commerce de pièces automobiles
 
 Application e-commerce pour pièces automobiles avec fonctionnalité de planification d'entretien personnalisée.
 
