@@ -13,8 +13,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Separator } from "@/components/ui/separator";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useQuery } from "@tanstack/react-query";
-import { getUserVehicles } from "../lib/api";
+import { getUserVehicles, VehicleParams } from "../lib/api";
 import { AlertCircle, Car } from "lucide-react";
+
+interface UserVehicle extends VehicleParams {
+  id: number;
+  makeName: string;
+  modelName: string;
+  engineName?: string;
+}
 
 const profileFormSchema = z.object({
   firstName: z.string().min(1, "Nom de famille est requis"),
@@ -50,7 +57,7 @@ const Profile = () => {
   }
   
   // Fetch user vehicles
-  const { data: userVehicles = [] } = useQuery({
+  const { data: userVehicles = [] } = useQuery<UserVehicle[]>({
     queryKey: ["/api/user-vehicles", user?.id],
     enabled: !!user,
   });
@@ -392,7 +399,7 @@ const Profile = () => {
                     </div>
                   ) : (
                     <div className="space-y-4">
-                      {userVehicles.map((vehicle: any) => (
+                      {userVehicles.map((vehicle) => (
                         <Card key={vehicle.id}>
                           <CardContent className="p-4">
                             <div className="flex justify-between items-center">

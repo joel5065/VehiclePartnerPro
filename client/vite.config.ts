@@ -16,10 +16,18 @@ export default defineConfig({
         manualChunks: {
           'vendor': ['react', 'react-dom', 'react-router-dom'],
           'ui': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-label', '@radix-ui/react-select', '@radix-ui/react-separator', '@radix-ui/react-slot', '@radix-ui/react-tabs', '@radix-ui/react-toast'],
-          'i18n': ['i18next', 'react-i18next']
+          'i18n': ['i18next', 'react-i18next'],
+          'utils': ['@tanstack/react-query', 'wouter', 'lucide-react']
         }
       }
     },
-    chunkSizeWarningLimit: 1000
+    chunkSizeWarningLimit: 1000,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    }
   }
 }) 

@@ -148,7 +148,7 @@ const Cart = () => {
                       
                       <p className="text-gray-600 text-sm mb-4">
                         {item.product?.description?.substring(0, 100)}
-                        {item.product?.description?.length > 100 ? "..." : ""}
+                        {item.product?.description && item.product.description.length > 100 ? "..." : ""}
                       </p>
                       
                       <div className="flex justify-between items-center mt-auto">

@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
-import { getVehicleMakes, getVehicleModels, getVehicleEngines } from "../lib/api";
+import { getVehicleMakes, getVehicleModels, getVehicleEngines, VehicleMake, VehicleModel, VehicleEngine } from "../lib/api";
 import { getYearRange } from "../lib/utils";
 
 interface VehicleSelectorProps {
@@ -29,26 +29,26 @@ const VehicleSelector = ({
   
   const years = getYearRange(1990);
   
-  const { data: makes = [] } = useQuery({
+  const { data: makes = [] } = useQuery<VehicleMake[]>({
     queryKey: ["/api/vehicle-makes"],
   });
   
-  const { data: models = [], isLoading: isLoadingModels } = useQuery({
+  const { data: models = [], isLoading: isLoadingModels } = useQuery<VehicleModel[]>({
     queryKey: ["/api/vehicle-models", selectedMake],
     enabled: !!selectedMake,
   });
   
-  const { data: engines = [], isLoading: isLoadingEngines } = useQuery({
+  const { data: engines = [], isLoading: isLoadingEngines } = useQuery<VehicleEngine[]>({
     queryKey: ["/api/vehicle-engines", selectedModel],
     enabled: !!selectedModel,
   });
   
   const filteredModels = selectedMake
-    ? models.filter((model: any) => model.makeId === parseInt(selectedMake))
+    ? models.filter((model: VehicleModel) => model.makeId === parseInt(selectedMake))
     : [];
     
   const filteredEngines = selectedModel
-    ? engines.filter((engine: any) => engine.modelId === parseInt(selectedModel))
+    ? engines.filter((engine: VehicleEngine) => engine.modelId === parseInt(selectedModel))
     : [];
   
   // Reset dependent fields when a selection changes
@@ -99,7 +99,7 @@ const VehicleSelector = ({
               <SelectValue placeholder="Sélectionner la marque" />
             </SelectTrigger>
             <SelectContent>
-              {makes.map((make: any) => (
+              {makes.map((make: VehicleMake) => (
                 <SelectItem key={make.id} value={make.id.toString()}>
                   {make.name}
                 </SelectItem>
@@ -119,7 +119,7 @@ const VehicleSelector = ({
               <SelectValue placeholder="Sélectionner le modèle" />
             </SelectTrigger>
             <SelectContent>
-              {filteredModels.map((model: any) => (
+              {filteredModels.map((model: VehicleModel) => (
                 <SelectItem key={model.id} value={model.id.toString()}>
                   {model.name}
                 </SelectItem>
@@ -139,7 +139,7 @@ const VehicleSelector = ({
               <SelectValue placeholder="Sélectionner le moteur" />
             </SelectTrigger>
             <SelectContent>
-              {filteredEngines.map((engine: any) => (
+              {filteredEngines.map((engine: VehicleEngine) => (
                 <SelectItem key={engine.id} value={engine.id.toString()}>
                   {engine.name}
                 </SelectItem>

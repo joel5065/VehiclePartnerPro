@@ -53,6 +53,53 @@ export interface OrderItemParams {
   price: number;
 }
 
+export interface Category {
+  id: number;
+  name: string;
+  description?: string;
+  icon?: string;
+}
+
+export interface VehicleEngine {
+  id: number;
+  name: string;
+  modelId: number;
+  yearStart: number;
+  yearEnd: number | null;
+  displacement: number | null;
+  cylinders: number | null;
+  fuelType: string | null;
+}
+
+export interface VehicleMake {
+  id: number;
+  name: string;
+}
+
+export interface VehicleModel {
+  id: number;
+  name: string;
+  makeId: number;
+  yearStart: number;
+  yearEnd: number | null;
+}
+
+export interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl?: string;
+  categoryId: number;
+  inStock: number;
+  compatibleVehicles: number[] | null;
+  rating: number;
+  reviewCount: number;
+  isTopRated?: boolean;
+  isOnSale?: boolean;
+  salePrice?: number;
+}
+
 // User API
 export const registerUser = async (userData: RegisterUserParams) => {
   const res = await apiRequest("POST", "/api/users/register", userData);

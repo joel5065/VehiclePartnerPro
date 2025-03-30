@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
-import { getProducts, getCategories } from "../lib/api";
+import { getProducts, getCategories, Category, Product } from "../lib/api";
 import VehicleSelector from "../components/VehicleSelector";
 import ProductCard from "../components/ProductCard";
 import { Button } from "@/components/ui/button";
@@ -28,14 +28,16 @@ const Products = () => {
   const [showOnlySale, setShowOnlySale] = useState(searchParams.get("sale") === "true");
   const [sortBy, setSortBy] = useState("relevance");
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   // Fetch products based on filters
-  const { data: products = [], isLoading: isLoadingProducts } = useQuery({
+  const { data: productsData = [], isLoading: isLoadingProducts } = useQuery<Product[]>({
     queryKey: ["/api/products", selectedCategory, selectedMake, selectedModel, searchQuery, showOnlySale],
     queryFn: async () => {
       if (searchQuery) {
         return await getProducts().then(products => 
-          products.filter((p: any) => 
+          products.filter((p: Product) => 
             p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
             p.description.toLowerCase().includes(searchQuery.toLowerCase())
           )
@@ -49,13 +51,13 @@ const Products = () => {
   });
 
   // Fetch categories for filter sidebar
-  const { data: categories = [], isLoading: isLoadingCategories } = useQuery({
+  const { data: categoriesData = [], isLoading: isLoadingCategories } = useQuery<Category[]>({
     queryKey: ["/api/categories"],
   });
 
   // Apply client-side filters
-  const filteredProducts = products
-    .filter((product: any) => {
+  const filteredProducts = productsData
+    .filter((product: Product) => {
       // Apply price filter
       const price = product.salePrice || product.price;
       if (price < priceRange[0] * 100 || price > priceRange[1] * 100) {
@@ -76,14 +78,14 @@ const Products = () => {
     });
 
   // Apply sorting
-  const sortedProducts = [...filteredProducts].sort((a: any, b: any) => {
+  const sortedProducts = [...filteredProducts].sort((a: Product, b: Product) => {
     switch (sortBy) {
       case "price-low":
         return (a.salePrice || a.price) - (b.salePrice || b.price);
       case "price-high":
         return (b.salePrice || b.price) - (a.salePrice || a.price);
       case "rating":
-        return b.rating - a.rating;
+        return (b.rating || 0) - (a.rating || 0);
       case "newest":
         return b.id - a.id; // Using ID as a proxy for newest
       default:
@@ -96,7 +98,7 @@ const Products = () => {
     // Use the current search query
   };
 
-  const handleVehicleSelect = (vehicle: any) => {
+  const handleVehicleSelect = (vehicle: { makeId: string; modelId: string }) => {
     setSelectedMake(vehicle.makeId);
     setSelectedModel(vehicle.modelId);
   };
@@ -143,7 +145,7 @@ const Products = () => {
                       ))}
                     </div>
                   ) : (
-                    categories.map((category: any) => (
+                    categoriesData.map((category: Category) => (
                       <div key={category.id} className="flex items-center">
                         <Checkbox
                           id={`category-${category.id}`}
@@ -241,7 +243,7 @@ const Products = () => {
                       <Label htmlFor="mobile-all-categories" className="ml-2">Toutes les Catégories</Label>
                     </div>
                     
-                    {categories.map((category: any) => (
+                    {categoriesData.map((category: Category) => (
                       <div key={category.id} className="flex items-center">
                         <Checkbox
                           id={`mobile-category-${category.id}`}
@@ -389,7 +391,7 @@ const Products = () => {
             </div>
           ) : sortedProducts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sortedProducts.map((product: any) => (
+              {sortedProducts.map((product: Product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>

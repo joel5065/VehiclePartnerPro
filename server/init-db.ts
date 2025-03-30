@@ -1,6 +1,7 @@
 // Import the database client directly from db.ts
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
+import { eq } from "drizzle-orm";
 //import dotenv from "dotenv";
 
 // Environment variables are already loaded by the system
@@ -55,7 +56,7 @@ export async function initializeDatabase() {
     }
     
     // Get Toyota ID
-    const toyotaMake = await db.select().from(schema.vehicleMakes).where(schema.vehicleMakes.name == "Toyota");
+    const toyotaMake = await db.select().from(schema.vehicleMakes).where(eq(schema.vehicleMakes.name, "Toyota"));
     const toyotaId = toyotaMake[0].id;
     
     // Toyota Models
@@ -72,8 +73,8 @@ export async function initializeDatabase() {
     }
     
     // Get Camry ID
-    const camryModel = await db.select().from(schema.vehicleModels).where(schema.vehicleModels.name == "Camry");
-    const camryId = camry.id;
+    const camryModel = await db.select().from(schema.vehicleModels).where(eq(schema.vehicleModels.name, "Camry"));
+    const camryId = camryModel[0].id;
     
     // Engines for Camry
     const camryEngines = [

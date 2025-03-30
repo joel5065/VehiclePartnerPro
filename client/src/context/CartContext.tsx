@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { getCart, addToCart, updateCartItemQuantity, removeCartItem, clearCart } from "../lib/api";
+import { getCart, addToCart, updateCartItemQuantity, removeCartItem, clearCart, Product } from "../lib/api";
 import { useAuth } from "./AuthContext";
 
 interface CartItem {
@@ -9,13 +9,7 @@ interface CartItem {
   productId: number;
   quantity: number;
   addedAt: string;
-  product?: {
-    id: number;
-    name: string;
-    price: number;
-    imageUrl?: string;
-    salePrice?: number;
-  };
+  product?: Product;
 }
 
 interface CartContextType {

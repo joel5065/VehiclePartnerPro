@@ -61,7 +61,7 @@ const OrderHistory = () => {
         };
       case "processing":
         return {
-          variant: "warning" as const,
+          variant: "secondary" as const,
           icon: <Package className="h-4 w-4 mr-1" />,
           label: "Processing"
         };
@@ -73,7 +73,7 @@ const OrderHistory = () => {
         };
       case "delivered":
         return {
-          variant: "success" as const,
+          variant: "default" as const,
           icon: <CheckCircle className="h-4 w-4 mr-1" />,
           label: "Delivered"
         };

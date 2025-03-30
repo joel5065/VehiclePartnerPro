@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
-import { getCategories, getProducts } from "../lib/api";
+import { getCategories, getProducts, Category, Product } from "../lib/api";
 import VehicleSelector from "../components/VehicleSelector";
 import CategoryCard from "../components/CategoryCard";
 import ProductCard from "../components/ProductCard";
@@ -12,11 +12,11 @@ import { ChevronLeft, ChevronRight, Check } from "lucide-react";
 const Home = () => {
   const [selectedVehicle, setSelectedVehicle] = useState<any>(null);
 
-  const { data: categories = [], isLoading: isLoadingCategories } = useQuery({
+  const { data: categories = [], isLoading: isLoadingCategories } = useQuery<Category[]>({
     queryKey: ["/api/categories"],
   });
 
-  const { data: featuredProducts = [], isLoading: isLoadingProducts } = useQuery({
+  const { data: featuredProducts = [], isLoading: isLoadingProducts } = useQuery<Product[]>({
     queryKey: ["/api/products"],
   });
 
@@ -110,7 +110,7 @@ const Home = () => {
                 </div>
               ))
             ) : (
-              categories.map((category: any) => (
+              categories.map((category) => (
                 <CategoryCard key={category.id} category={category} />
               ))
             )}
@@ -155,7 +155,7 @@ const Home = () => {
                 </div>
               ))
             ) : (
-              featuredProducts.slice(0, 4).map((product: any) => (
+              featuredProducts.slice(0, 4).map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))
             )}

@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { insertUserVehicleSchema } from "@shared/schema";
 import { useQuery } from "@tanstack/react-query";
-import { getVehicleMakes, getVehicleModels, getVehicleEngines, registerVehicle } from "../lib/api";
+import { getVehicleMakes, getVehicleModels, getVehicleEngines, registerVehicle, VehicleMake, VehicleModel, VehicleEngine } from "../lib/api";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 import { getYearRange } from "../lib/utils";
@@ -24,16 +24,44 @@ const formSchema = insertUserVehicleSchema.extend({
     .transform(val => parseInt(val)),
   purchaseDate: z.string().optional(),
   annualMileage: z.enum(["5000", "10000", "15000", "20000", "25000"]).optional(),
+  harshWeather: z.boolean().default(false),
+  cityDriving: z.boolean().default(false),
+  regularTowing: z.boolean().default(false),
 });
 
 interface VehicleRegistrationFormProps {
   onSubmitSuccess?: (vehicleId: number) => void;
 }
 
+interface FormData {
+  makeId: string;
+  modelId: string;
+  year: string;
+  engineId?: string;
+  mileage: number;
+  purchaseDate?: string;
+  annualMileage?: string;
+  harshWeather: boolean;
+  cityDriving: boolean;
+  regularTowing: boolean;
+}
+
 const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormProps) => {
   const { user } = useAuth();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState<FormData>({
+    makeId: "",
+    modelId: "",
+    year: "",
+    engineId: "",
+    mileage: 0,
+    purchaseDate: "",
+    annualMileage: "10000",
+    harshWeather: false,
+    cityDriving: false,
+    regularTowing: false,
+  });
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,7 +70,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
       modelId: "",
       year: "",
       engineId: "",
-      mileage: "",
+      mileage: 0,
       purchaseDate: "",
       annualMileage: "10000",
       harshWeather: false,
@@ -53,26 +81,26 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
   
   const years = getYearRange(1990);
   
-  const { data: makes = [] } = useQuery({
+  const { data: makes = [] } = useQuery<VehicleMake[]>({
     queryKey: ["/api/vehicle-makes"],
   });
   
-  const { data: models = [] } = useQuery({
+  const { data: models = [] } = useQuery<VehicleModel[]>({
     queryKey: ["/api/vehicle-models", form.watch("makeId")],
     enabled: !!form.watch("makeId"),
   });
   
-  const { data: engines = [] } = useQuery({
+  const { data: engines = [] } = useQuery<VehicleEngine[]>({
     queryKey: ["/api/vehicle-engines", form.watch("modelId")],
     enabled: !!form.watch("modelId"),
   });
   
   const filteredModels = form.watch("makeId")
-    ? models.filter((model: any) => model.makeId === parseInt(form.watch("makeId")))
+    ? models.filter((model: VehicleModel) => model.makeId === parseInt(form.watch("makeId")))
     : [];
     
   const filteredEngines = form.watch("modelId")
-    ? engines.filter((engine: any) => engine.modelId === parseInt(form.watch("modelId")))
+    ? engines.filter((engine: VehicleEngine) => engine.modelId === parseInt(form.watch("modelId")))
     : [];
   
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
@@ -178,7 +206,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {makes.map((make: any) => (
+                        {makes.map((make: VehicleMake) => (
                           <SelectItem key={make.id} value={make.id.toString()}>
                             {make.name}
                           </SelectItem>
@@ -211,7 +239,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {filteredModels.map((model: any) => (
+                        {filteredModels.map((model: VehicleModel) => (
                           <SelectItem key={model.id} value={model.id.toString()}>
                             {model.name}
                           </SelectItem>
@@ -240,7 +268,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {filteredEngines.map((engine: any) => (
+                        {filteredEngines.map((engine: VehicleEngine) => (
                           <SelectItem key={engine.id} value={engine.id.toString()}>
                             {engine.name}
                           </SelectItem>

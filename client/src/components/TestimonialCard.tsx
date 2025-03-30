@@ -44,7 +44,7 @@ const TestimonialCard = ({ testimonial }: TestimonialCardProps) => {
           </div>
           <div>
             <h4 className="font-medium">{testimonial.author}</h4>
-            <p class  Name="text-sm text-gray-600">{testimonial.vehicle} Propriétaire</p>
+            <p className="text-sm text-gray-600">{testimonial.vehicle} Propriétaire</p>
           </div>
         </div>
       </CardContent>

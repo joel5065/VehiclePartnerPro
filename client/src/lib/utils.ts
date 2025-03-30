@@ -40,7 +40,12 @@ export function getMileageIntervalText(miles: number): string {
   return miles.toLocaleString() + ' miles';
 }
 
-export function mapMaintenanceItemsToSchedule(items: any[]): { [interval: string]: string[] } {
+interface MaintenanceItem {
+  name: string;
+  intervalMiles: number;
+}
+
+export function mapMaintenanceItemsToSchedule(items: MaintenanceItem[]): { [interval: string]: string[] } {
   const schedule: { [interval: string]: string[] } = {
     '5000': [],
     '10000': [],
