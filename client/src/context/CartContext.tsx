@@ -64,8 +64,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
       setCartItems(cartData);
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to load your cart",
+        title: "Erreur",
+        description: "Impossible de charger votre panier",
         variant: "destructive",
       });
     } finally {
@@ -76,8 +76,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const addItem = async (productId: number, quantity: number) => {
     if (!user) {
       toast({
-        title: "Authentication Required",
-        description: "Please log in to add items to your cart",
+        title: "Authentification requise",
+        description: "Veuillez vous connecter pour ajouter des articles à votre panier",
         variant: "destructive",
       });
       return;
@@ -92,15 +92,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
       });
       
       toast({
-        title: "Success",
-        description: "Item added to your cart",
+        title: "Succès",
+        description: "Article ajouté à votre panier",
       });
       
       await refreshCart();
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to add the item to your cart",
+        title: "Erreur",
+        description: "Impossible d'ajouter l'article à votre panier",
         variant: "destructive",
       });
     } finally {
@@ -115,8 +115,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
       await refreshCart();
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to update item quantity",
+        title: "Erreur",
+        description: "Impossible de mettre à jour la quantité de l'article",
         variant: "destructive",
       });
     } finally {
@@ -131,13 +131,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
       await refreshCart();
       
       toast({
-        title: "Success",
-        description: "Item removed from your cart",
+        title: "Succès",
+        description: "Article retiré de votre panier",
       });
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to remove the item from your cart",
+        title: "Erreur",
+        description: "Impossible de retirer l'article de votre panier",
         variant: "destructive",
       });
     } finally {
@@ -154,13 +154,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
       setCartItems([]);
       
       toast({
-        title: "Success",
-        description: "Your cart has been cleared",
+        title: "Succès",
+        description: "Votre panier a été vidé",
       });
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to clear your cart",
+        title: "Erreur",
+        description: "Impossible de vider votre panier",
         variant: "destructive",
       });
     } finally {
@@ -190,7 +190,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 export function useCart() {
   const context = useContext(CartContext);
   if (context === undefined) {
-    throw new Error("useCart must be used within a CartProvider");
+    throw new Error("useCart doit être utilisé dans un CartProvider");
   }
   return context;
 }

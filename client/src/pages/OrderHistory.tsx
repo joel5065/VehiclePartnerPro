@@ -105,7 +105,7 @@ const OrderHistory = () => {
   if (isLoading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6">Order History</h1>
+        <h1 className="text-3xl font-bold mb-6">Historique des Commandes</h1>
         <div className="flex justify-center py-12">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
         </div>
@@ -116,13 +116,13 @@ const OrderHistory = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-        <h1 className="text-3xl font-bold">Order History</h1>
+        <h1 className="text-3xl font-bold">Historique des Commandes</h1>
         <Button 
           variant="outline" 
           className="mt-4 md:mt-0" 
           onClick={() => navigate("/products")}
         >
-          Continue Shopping
+          Continuer vos achats
         </Button>
       </div>
 
@@ -130,15 +130,15 @@ const OrderHistory = () => {
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12">
             <ShoppingBag className="h-16 w-16 text-gray-400 mb-4" />
-            <h2 className="text-2xl font-medium mb-2">No Orders Yet</h2>
+            <h2 className="text-2xl font-medium mb-2">Aucune Commande Encore</h2>
             <p className="text-gray-600 mb-6 text-center max-w-md">
-              You haven't placed any orders yet. Start shopping to see your order history here.
+              Vous n'avez pas encore passé de commande. Commencez à acheter pour voir votre historique des commandes ici.
             </p>
             <Button 
               className="bg-primary hover:bg-red-600"
               onClick={() => navigate("/products")}
             >
-              Browse Products
+              Parcourir les Produits
             </Button>
           </CardContent>
         </Card>
@@ -146,19 +146,19 @@ const OrderHistory = () => {
         <>
           <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
             <TabsList>
-              <TabsTrigger value="all">All Orders</TabsTrigger>
-              <TabsTrigger value="pending">Pending</TabsTrigger>
-              <TabsTrigger value="processing">Processing</TabsTrigger>
-              <TabsTrigger value="shipped">Shipped</TabsTrigger>
-              <TabsTrigger value="delivered">Delivered</TabsTrigger>
-              <TabsTrigger value="cancelled">Cancelled</TabsTrigger>
+              <TabsTrigger value="all">Toutes les Commandes</TabsTrigger>
+              <TabsTrigger value="pending">En attente</TabsTrigger>
+              <TabsTrigger value="processing">En cours</TabsTrigger>
+              <TabsTrigger value="shipped">Expédié</TabsTrigger>
+              <TabsTrigger value="delivered">Livré</TabsTrigger>
+              <TabsTrigger value="cancelled">Annulé</TabsTrigger>
             </TabsList>
           </Tabs>
 
           {filteredOrders.length === 0 ? (
             <Card>
               <CardContent className="flex items-center justify-center py-8">
-                <p className="text-gray-500">No orders found with this status.</p>
+                <p className="text-gray-500">Aucune commande trouvée avec ce statut.</p>
               </CardContent>
             </Card>
           ) : (
@@ -174,13 +174,13 @@ const OrderHistory = () => {
                       <div className="flex flex-col md:flex-row justify-between">
                         <div className="space-y-1">
                           <div className="flex items-center">
-                            <CardTitle className="text-lg">Order #{order.id}</CardTitle>
+                            <CardTitle className="text-lg">Commande #{order.id}</CardTitle>
                             <Badge variant={statusInfo.variant} className="ml-3 flex items-center">
                               {statusInfo.icon}
                               {statusInfo.label}
                             </Badge>
                           </div>
-                          <p className="text-sm text-gray-500">Placed on {orderDate}</p>
+                          <p className="text-sm text-gray-500">Passée le {orderDate}</p>
                         </div>
                         <div className="flex items-center mt-2 md:mt-0">
                           <p className="font-medium mr-4">Total: {formatPrice(order.total)}</p>
@@ -190,7 +190,7 @@ const OrderHistory = () => {
                               size="sm"
                               className="text-xs"
                             >
-                              Track Package
+                              Suivi du Colis
                             </Button>
                           )}
                         </div>
@@ -205,19 +205,19 @@ const OrderHistory = () => {
                               <span>{totalItems} {totalItems === 1 ? 'item' : 'items'}</span>
                             </div>
                             <AccordionTrigger className="py-0">
-                              <span className="text-sm text-primary mr-2">View Order Details</span>
+                              <span className="text-sm text-primary mr-2">Voir les Détails de la Commande</span>
                             </AccordionTrigger>
                           </div>
                           <AccordionContent>
                             <div className="px-6 pb-4">
                               <div className="mb-4">
-                                <h3 className="font-medium mb-2">Shipping Address</h3>
+                                <h3 className="font-medium mb-2">Adresse de Livraison</h3>
                                 <p className="text-sm text-gray-600">
                                   {order.shippingAddress}, {order.shippingCity}, {order.shippingState} {order.shippingZip}
                                 </p>
                               </div>
                               
-                              <h3 className="font-medium mb-2">Items</h3>
+                              <h3 className="font-medium mb-2">Articles</h3>
                               <div className="space-y-4">
                                 {order.items.map((item: any) => (
                                   <div key={item.id} className="flex space-x-4">
@@ -247,7 +247,7 @@ const OrderHistory = () => {
                               <Separator className="my-4" />
                               
                               <div className="flex justify-between font-medium">
-                                <span>Order Total:</span>
+                                <span>Total de la Commande:</span>
                                 <span>{formatPrice(order.total)}</span>
                               </div>
                               
@@ -258,7 +258,7 @@ const OrderHistory = () => {
                                     size="sm"
                                     className="text-red-500 hover:text-red-600 hover:bg-red-50 border-red-200"
                                   >
-                                    Cancel Order
+                                    Annuler la Commande
                                   </Button>
                                 </div>
                               )}
@@ -269,7 +269,7 @@ const OrderHistory = () => {
                                     size="sm"
                                     className="bg-primary hover:bg-red-600"
                                   >
-                                    Buy Again
+                                    Acheter à nouveau
                                   </Button>
                                 </div>
                               )}

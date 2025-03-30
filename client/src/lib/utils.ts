@@ -6,10 +6,10 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatPrice(amount: number): string {
-  // Convert cents to dollars and format with $ symbol
-  return new Intl.NumberFormat('en-US', {
+  // Convert cents to FCFA and format with FCFA symbol
+  return new Intl.NumberFormat('fr-FR', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'XOF',
   }).format(amount / 100);
 }
 

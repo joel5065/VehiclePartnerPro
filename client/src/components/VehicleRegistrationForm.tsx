@@ -78,8 +78,8 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     if (!user) {
       toast({
-        title: "Authentication Required",
-        description: "Please log in to register a vehicle",
+        title: "Authentification requise",  
+        description: "Veuillez vous connecter pour enregistrer un véhicule",
         variant: "destructive",
       });
       return;
@@ -103,8 +103,8 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
       });
       
       toast({
-        title: "Vehicle Registered",
-        description: "Your vehicle has been successfully registered",
+        title: "Véhicule enregistré",
+        description: "Votre véhicule a été enregistré avec succès",
       });
       
       form.reset();
@@ -114,8 +114,8 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
       }
     } catch (error) {
       toast({
-        title: "Registration Failed",
-        description: "Failed to register your vehicle. Please try again.",
+        title: "Échec de l'enregistrement",
+        description: "Impossible d'enregistrer votre véhicule. Veuillez réessayer.",
         variant: "destructive",
       });
     } finally {
@@ -134,14 +134,14 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                 name="year"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Vehicle Year*</FormLabel>
+                    <FormLabel>Année du véhicule*</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       value={field.value}
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select Year" />
+                          <SelectValue placeholder="Sélectionner l'année" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -162,7 +162,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                 name="makeId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Vehicle Make*</FormLabel>
+                    <FormLabel>Marque du véhicule*</FormLabel>
                     <Select
                       onValueChange={(value) => {
                         field.onChange(value);
@@ -174,7 +174,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select Make" />
+                          <SelectValue placeholder="Sélectionner la marque" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -195,7 +195,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                 name="modelId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Vehicle Model*</FormLabel>
+                    <FormLabel>Modèle du véhicule*</FormLabel>
                     <Select
                       onValueChange={(value) => {
                         field.onChange(value);
@@ -207,7 +207,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select Model" />
+                          <SelectValue placeholder="Sélectionner le modèle" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -228,7 +228,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                 name="engineId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Trim/Engine</FormLabel>
+                    <FormLabel>Trim/Moteur</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       value={field.value}
@@ -236,7 +236,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select Trim/Engine" />
+                          <SelectValue placeholder="Sélectionner le trim/moteur" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -257,11 +257,11 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                 name="mileage"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Current Mileage*</FormLabel>
+                    <FormLabel>Kilométrage actuel*</FormLabel>
                     <FormControl>
                       <Input 
                         type="number"
-                        placeholder="e.g. 45000"
+                          placeholder="e.g. 45000"
                         {...field} 
                       />
                     </FormControl>
@@ -275,7 +275,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                 name="purchaseDate"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Purchase Date</FormLabel>
+                    <FormLabel>Date d'achat</FormLabel>
                     <FormControl>
                       <Input 
                         type="date"
@@ -289,29 +289,29 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
             </div>
             
             <div className="pt-4 border-t border-gray-200">
-              <h3 className="text-lg font-medium mb-4">Driving Habits</h3>
+              <h3 className="text-lg font-medium mb-4">Habitudes de conduite</h3>
               <div className="space-y-4">
                 <FormField
                   control={form.control}
                   name="annualMileage"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Estimated Annual Mileage</FormLabel>
+                      <FormLabel>Kilométrage annuel estimé</FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         value={field.value}
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select Annual Mileage" />
+                            <SelectValue placeholder="Sélectionner le kilométrage annuel estimé" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="5000">Less than 5,000 miles</SelectItem>
-                          <SelectItem value="10000">5,000 - 10,000 miles</SelectItem>
-                          <SelectItem value="15000">10,001 - 15,000 miles</SelectItem>
-                          <SelectItem value="20000">15,001 - 20,000 miles</SelectItem>
-                          <SelectItem value="25000">More than 20,000 miles</SelectItem>
+                          <SelectItem value="5000">Moins de 5,000 km</SelectItem>
+                          <SelectItem value="10000">5,000 - 10,000 km</SelectItem>
+                          <SelectItem value="15000">10,001 - 15,000 km</SelectItem>
+                          <SelectItem value="20000">15,001 - 20,000 km</SelectItem>
+                          <SelectItem value="25000">Plus de 20,000 km</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -332,7 +332,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                           />
                         </FormControl>
                         <FormLabel className="text-sm text-gray-700">
-                          Harsh Weather Conditions
+                          Conditions de conduite difficiles
                         </FormLabel>
                       </FormItem>
                     )}
@@ -350,7 +350,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                           />
                         </FormControl>
                         <FormLabel className="text-sm text-gray-700">
-                          Mostly City Driving
+                          Conduite principalement en ville
                         </FormLabel>
                       </FormItem>
                     )}
@@ -368,7 +368,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                           />
                         </FormControl>
                         <FormLabel className="text-sm text-gray-700">
-                          Regular Towing
+                          Remorquage régulier
                         </FormLabel>
                       </FormItem>
                     )}
@@ -383,7 +383,7 @@ const VehicleRegistrationForm = ({ onSubmitSuccess }: VehicleRegistrationFormPro
                 className="bg-amber-500 hover:bg-amber-600 text-white"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Generating..." : "Generate Maintenance Plan"}
+                {isSubmitting ? "En cours..." : "Générer le plan de maintenance"}
               </Button>
             </div>
           </form>

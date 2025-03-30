@@ -4,7 +4,7 @@ import { Star } from "lucide-react";
 interface TestimonialCardProps {
   testimonial: {
     text: string;
-    author: string;
+    author: string; 
     vehicle: string;
     rating: number;
     avatarUrl?: string;
@@ -44,7 +44,7 @@ const TestimonialCard = ({ testimonial }: TestimonialCardProps) => {
           </div>
           <div>
             <h4 className="font-medium">{testimonial.author}</h4>
-            <p className="text-sm text-gray-600">{testimonial.vehicle} Owner</p>
+            <p class  Name="text-sm text-gray-600">{testimonial.vehicle} Propriétaire</p>
           </div>
         </div>
       </CardContent>

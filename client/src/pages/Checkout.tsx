@@ -108,8 +108,8 @@ const Checkout = () => {
       navigate("/orders");
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to place your order. Please try again.",
+        title: "Erreur",
+        description: "Impossible de passer commande. Veuillez réessayer.",
         variant: "destructive",
       });
     } finally {
@@ -133,7 +133,7 @@ const Checkout = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Checkout</h1>
+      <h1 className="text-3xl font-bold mb-6">Passer à la caisse</h1>
       
       {/* Checkout Progress */}
       <div className="mb-8">
@@ -151,9 +151,9 @@ const Checkout = () => {
           </div>
         </div>
         <div className="flex justify-between mt-2 text-sm">
-          <span>Shipping</span>
-          <span>Payment</span>
-          <span>Review</span>
+          <span>Livraison</span>
+          <span>Paiement</span>
+          <span>Récapitulatif</span>
         </div>
       </div>
       
@@ -166,7 +166,7 @@ const Checkout = () => {
                 <CardContent className="p-6">
                   {currentStep === 1 && (
                     <div>
-                      <h2 className="text-xl font-semibold mb-4">Shipping Information</h2>
+                      <h2 className="text-xl font-semibold mb-4">Informations de livraison</h2>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="md:col-span-2">
                           <FormField
@@ -174,7 +174,7 @@ const Checkout = () => {
                             name="shippingAddress"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>Address</FormLabel>
+                                <FormLabel>Adresse</FormLabel>
                                 <FormControl>
                                   <Input {...field} />
                                 </FormControl>
@@ -189,7 +189,7 @@ const Checkout = () => {
                           name="shippingCity"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>City</FormLabel>
+                              <FormLabel>Ville</FormLabel>
                               <FormControl>
                                 <Input {...field} />
                               </FormControl>
@@ -204,7 +204,7 @@ const Checkout = () => {
                             name="shippingState"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>State</FormLabel>
+                                <FormLabel>État</FormLabel>
                                 <FormControl>
                                   <Input {...field} />
                                 </FormControl>
@@ -218,7 +218,7 @@ const Checkout = () => {
                             name="shippingZip"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>ZIP Code</FormLabel>
+                                <FormLabel>Code postal</FormLabel>
                                 <FormControl>
                                   <Input {...field} />
                                 </FormControl>
@@ -235,7 +235,7 @@ const Checkout = () => {
                           onClick={goToNextStep}
                           className="bg-primary hover:bg-red-600"
                         >
-                          Continue to Payment
+                          Continuer au paiement
                         </Button>
                       </div>
                     </div>
@@ -243,7 +243,7 @@ const Checkout = () => {
                   
                   {currentStep === 2 && (
                     <div>
-                      <h2 className="text-xl font-semibold mb-4">Payment Method</h2>
+                      <h2 className="text-xl font-semibold mb-4">Méthode de paiement</h2>
                       
                       <FormField
                         control={form.control}
@@ -260,7 +260,7 @@ const Checkout = () => {
                                   <RadioGroupItem value="credit" id="credit" />
                                   <label htmlFor="credit" className="flex items-center cursor-pointer">
                                     <CreditCard className="h-5 w-5 mr-2" />
-                                    Credit Card
+                                    Carte de crédit
                                   </label>
                                 </div>
                                 <div className="flex items-center space-x-2">
@@ -284,7 +284,7 @@ const Checkout = () => {
                             name="cardName"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>Name on Card</FormLabel>
+                                <FormLabel>Nom sur la carte</FormLabel>
                                 <FormControl>
                                   <Input {...field} />
                                 </FormControl>
@@ -298,7 +298,7 @@ const Checkout = () => {
                             name="cardNumber"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>Card Number</FormLabel>
+                                <FormLabel>Numéro de carte</FormLabel>
                                 <FormControl>
                                   <Input 
                                     {...field} 
@@ -357,14 +357,14 @@ const Checkout = () => {
                           variant="outline"
                           onClick={goToPreviousStep}
                         >
-                          Back to Shipping
+                          Retour à la livraison
                         </Button>
                         <Button 
                           type="submit" 
                           className="bg-primary hover:bg-red-600"
                           disabled={isSubmitting}
                         >
-                          {isSubmitting ? "Processing..." : "Place Order"}
+                          {isSubmitting ? "En cours..." : "Passer à la caisse"}
                         </Button>
                       </div>
                     </div>
@@ -379,7 +379,7 @@ const Checkout = () => {
         <div className="lg:w-1/3">
           <Card>
             <CardContent className="p-6">
-              <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
+              <h2 className="text-xl font-semibold mb-4">Récapitulatif de la commande</h2>
               
               <div className="space-y-4 mb-6">
                 {cartItems.map((item) => (
@@ -403,15 +403,15 @@ const Checkout = () => {
               
               <div className="space-y-3 mb-4">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Subtotal</span>
+                  <span className="text-gray-600">Sous-total</span>
                   <span>{formatPrice(cartTotal)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Shipping</span>
-                  <span>{shipping === 0 ? "FREE" : formatPrice(shipping)}</span>
+                  <span className="text-gray-600">Livraison</span>
+                  <span>{shipping === 0 ? "GRATUIT" : formatPrice(shipping)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Estimated Tax</span>
+                  <span className="text-gray-600">Taxe estimée</span>
                   <span>{formatPrice(tax)}</span>
                 </div>
               </div>
@@ -419,7 +419,7 @@ const Checkout = () => {
               <Separator className="my-4" />
               
               <div className="flex justify-between font-semibold text-lg">
-                <span>Total</span>
+                  <span>Total</span>
                 <span>{formatPrice(orderTotal)}</span>
               </div>
             </CardContent>

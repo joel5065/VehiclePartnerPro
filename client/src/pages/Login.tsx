@@ -38,7 +38,7 @@ const Login = () => {
     if (success) {
       navigate(redirect);
     } else {
-      setLoginError("Invalid username or password");
+      setLoginError("Mot de passe ou nom d'utilisateur incorrect");
     }
   };
   
@@ -46,8 +46,8 @@ const Login = () => {
     <div className="container max-w-md mx-auto px-4 py-12">
       <Card>
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold">Sign in to your account</CardTitle>
-          <CardDescription>Enter your credentials to access your account</CardDescription>
+          <CardTitle className="text-2xl font-bold">Connexion à votre compte</CardTitle>
+          <CardDescription>Entrez vos identifiants pour accéder à votre compte</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -57,7 +57,7 @@ const Login = () => {
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel>Nom d'utilisateur</FormLabel>
                     <FormControl>
                       <Input placeholder="johndoe" {...field} />
                     </FormControl>
@@ -71,7 +71,7 @@ const Login = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>Mot de passe</FormLabel>
                     <FormControl>
                       <Input type="password" placeholder="••••••••" {...field} />
                     </FormControl>
@@ -91,14 +91,14 @@ const Login = () => {
                 className="w-full bg-primary hover:bg-red-600" 
                 disabled={isLoading}
               >
-                {isLoading ? "Signing in..." : "Sign In"}
+                {isLoading ? "Connexion en cours..." : "Connexion"}
               </Button>
             </form>
           </Form>
           
           <div className="mt-4 text-center">
             <a href="#" className="text-sm text-primary hover:underline">
-              Forgot password?
+              Mot de passe oublié?
             </a>
           </div>
           
@@ -106,16 +106,16 @@ const Login = () => {
           
           <div className="text-center">
             <p className="text-sm text-gray-600 mb-4">
-              Don't have an account?
+              Pas de compte?
             </p>
             <Button asChild variant="outline" className="w-full">
-              <Link href="/register">Create Account</Link>
+              <Link href="/register">Créer un compte</Link>
             </Button>
           </div>
         </CardContent>
         <CardFooter className="flex justify-center px-8 pt-0">
           <p className="text-xs text-gray-500 text-center">
-            By signing in, you agree to our Terms of Service and Privacy Policy.
+            En vous connectant, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité.
           </p>
         </CardFooter>
       </Card>

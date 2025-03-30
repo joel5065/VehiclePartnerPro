@@ -74,13 +74,13 @@ const VehicleSelector = ({
   
   return (
     <div className={`bg-gray-100 rounded-lg p-6 ${className}`}>
-      <h2 className="text-xl font-semibold mb-4">Find Parts For Your Vehicle</h2>
+      <h2 className="text-xl font-semibold mb-4">Trouver des pièces pour votre véhicule</h2>
       <div className={`grid grid-cols-1 ${variant === "full" ? "md:grid-cols-5" : "md:grid-cols-4"} gap-4`}>
         <div>
-          <Label htmlFor="year" className="block text-sm font-medium text-gray-700 mb-1">Year</Label>
+          <Label htmlFor="year" className="block text-sm font-medium text-gray-700 mb-1">Année</Label>
           <Select value={selectedYear} onValueChange={setSelectedYear}>
             <SelectTrigger id="year">
-              <SelectValue placeholder="Select Year" />
+              <SelectValue placeholder="Sélectionner l'année" />
             </SelectTrigger>
             <SelectContent>
               {years.map(year => (
@@ -93,10 +93,10 @@ const VehicleSelector = ({
         </div>
         
         <div>
-          <Label htmlFor="make" className="block text-sm font-medium text-gray-700 mb-1">Make</Label>
+          <Label htmlFor="make" className="block text-sm font-medium text-gray-700 mb-1">Marque</Label>
           <Select value={selectedMake} onValueChange={setSelectedMake} disabled={!selectedYear}>
             <SelectTrigger id="make">
-              <SelectValue placeholder="Select Make" />
+              <SelectValue placeholder="Sélectionner la marque" />
             </SelectTrigger>
             <SelectContent>
               {makes.map((make: any) => (
@@ -109,14 +109,14 @@ const VehicleSelector = ({
         </div>
         
         <div>
-          <Label htmlFor="model" className="block text-sm font-medium text-gray-700 mb-1">Model</Label>
+          <Label htmlFor="model" className="block text-sm font-medium text-gray-700 mb-1">Modèle</Label>
           <Select 
             value={selectedModel} 
             onValueChange={setSelectedModel} 
             disabled={!selectedMake || isLoadingModels}
           >
             <SelectTrigger id="model">
-              <SelectValue placeholder="Select Model" />
+              <SelectValue placeholder="Sélectionner le modèle" />
             </SelectTrigger>
             <SelectContent>
               {filteredModels.map((model: any) => (
@@ -129,14 +129,14 @@ const VehicleSelector = ({
         </div>
         
         <div>
-          <Label htmlFor="engine" className="block text-sm font-medium text-gray-700 mb-1">Engine</Label>
+          <Label htmlFor="engine" className="block text-sm font-medium text-gray-700 mb-1">Moteur</Label>
           <Select 
             value={selectedEngine} 
             onValueChange={setSelectedEngine} 
             disabled={!selectedModel || isLoadingEngines}
           >
             <SelectTrigger id="engine">
-              <SelectValue placeholder="Select Engine" />
+              <SelectValue placeholder="Sélectionner le moteur" />
             </SelectTrigger>
             <SelectContent>
               {filteredEngines.map((engine: any) => (
@@ -156,7 +156,7 @@ const VehicleSelector = ({
               onClick={handleFindParts}
               disabled={!selectedYear || !selectedMake || !selectedModel}
             >
-              Find Parts
+              Trouver des pièces
             </Button>
           </div>
         )}

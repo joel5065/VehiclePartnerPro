@@ -48,7 +48,7 @@ const Cart = () => {
   if (isLoading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
+        <h1 className="text-3xl font-bold mb-6">Votre panier</h1>
         <div className="flex justify-center py-12">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
         </div>
@@ -59,15 +59,15 @@ const Cart = () => {
   if (cartItems.length === 0) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
+        <h1 className="text-3xl font-bold mb-6">Votre panier</h1>
         <Card className="text-center py-12">
           <CardContent>
             <div className="flex flex-col items-center">
               <ShoppingCart className="h-16 w-16 text-gray-400 mb-4" />
-              <h2 className="text-2xl font-medium mb-2">Your cart is empty</h2>
-              <p className="text-gray-600 mb-6">Looks like you haven't added any items to your cart yet.</p>
+              <h2 className="text-2xl font-medium mb-2">Votre panier est vide</h2>
+              <p className="text-gray-600 mb-6">Il semblerait que vous n'avez pas ajouté d'articles à votre panier.</p>
               <Button asChild>
-                <Link href="/products">Continue Shopping</Link>
+                <Link href="/products">Continuer vos achats</Link>
               </Button>
             </div>
           </CardContent>
@@ -78,7 +78,7 @@ const Cart = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
+      <h1 className="text-3xl font-bold mb-6">Votre panier</h1>
       
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Cart Items */}
@@ -86,28 +86,28 @@ const Cart = () => {
           <Card>
             <CardContent className="p-6">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold">Items ({cartItems.length})</h2>
+                <h2 className="text-xl font-semibold">Articles ({cartItems.length})</h2>
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
                     <Button variant="ghost" size="sm" className="text-red-500 flex items-center">
                       <Trash2 className="h-4 w-4 mr-2" />
-                      Clear Cart
+                      Vider le panier
                     </Button>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
-                      <AlertDialogTitle>Clear your cart?</AlertDialogTitle>
+                      <AlertDialogTitle>Voulez-vous vider votre panier?</AlertDialogTitle>
                       <AlertDialogDescription>
-                        This will remove all items from your cart. This action cannot be undone.
+                        Cette action supprimera tous les articles de votre panier. Cette action ne peut pas être annulée.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogCancel>Annuler</AlertDialogCancel>
                       <AlertDialogAction 
                         className="bg-red-500 hover:bg-red-600"
                         onClick={handleClearCart}
                       >
-                        Clear Cart
+                        Vider le panier
                       </AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
@@ -196,7 +196,7 @@ const Cart = () => {
                 variant="outline"
                 asChild
               >
-                <Link href="/products">Continue Shopping</Link>
+                <Link href="/products">Continuer vos achats</Link>
               </Button>
             </CardFooter>
           </Card>
@@ -206,26 +206,26 @@ const Cart = () => {
         <div className="lg:w-1/3">
           <Card>
             <CardContent className="p-6">
-              <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
+              <h2 className="text-xl font-semibold mb-4">Récapitulatif de la commande</h2>
               
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Subtotal</span>
+                  <span className="text-gray-600">Sous-total</span>
                   <span>{formatPrice(cartTotal)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Shipping</span>
-                  <span>{shipping === 0 ? "FREE" : formatPrice(shipping)}</span>
+                  <span className="text-gray-600">Livraison</span>
+                  <span>{shipping === 0 ? "GRATUIT" : formatPrice(shipping)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Estimated Tax</span>
+                  <span className="text-gray-600">Taxe estimée</span>
                   <span>{formatPrice(tax)}</span>
                 </div>
                 
                 <form onSubmit={handleApplyPromo} className="mt-4">
                   <div className="flex space-x-2">
                     <Input
-                      placeholder="Promo code"
+                      placeholder="Code promo"
                       value={promoCode}
                       onChange={(e) => setPromoCode(e.target.value)}
                       className="flex-1"
@@ -235,7 +235,7 @@ const Cart = () => {
                       variant="outline"
                       disabled={!promoCode || isApplying}
                     >
-                      {isApplying ? "Applying..." : "Apply"}
+                      {isApplying ? "Application en cours..." : "Appliquer"}
                     </Button>
                   </div>
                 </form>
@@ -252,16 +252,16 @@ const Cart = () => {
                 <div className="bg-amber-50 border border-amber-200 rounded-md p-4 mb-6 flex items-start">
                   <AlertCircle className="h-5 w-5 text-amber-500 mr-2 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-sm font-medium text-amber-800">Please sign in to checkout</p>
+                    <p className="text-sm font-medium text-amber-800">Veuillez vous connecter pour passer à la caisse</p>
                     <p className="text-xs text-amber-700 mt-1">
-                      You need to be logged in to complete your purchase.
+                      Vous devez être connecté pour compléter votre commande.
                     </p>
                     <div className="mt-2 flex space-x-2">
                       <Button asChild size="sm" variant="outline">
-                        <Link href="/login">Sign In</Link>
+                        <Link href="/login">Se connecter</Link>
                       </Button>
                       <Button asChild size="sm">
-                        <Link href="/register">Register</Link>
+                        <Link href="/register">S'inscrire</Link>
                       </Button>
                     </div>
                   </div>
@@ -272,13 +272,13 @@ const Cart = () => {
                   className="w-full bg-primary hover:bg-red-600"
                   size="lg"
                 >
-                  <Link href="/checkout">Proceed to Checkout</Link>
+                  <Link href="/checkout">Passer à la caisse</Link>
                 </Button>
               )}
               
               <div className="mt-6 text-center text-sm text-gray-500">
-                <p>Secure Checkout</p>
-                <p className="mt-1">All transactions are secure and encrypted.</p>
+                <p>Paiement sécurisé</p>
+                <p className="mt-1">Toutes les transactions sont sécurisées et cryptées.</p>
               </div>
             </CardContent>
           </Card>

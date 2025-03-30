@@ -12,8 +12,10 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Search, Filter, SlidersHorizontal } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { useTranslation } from "react-i18next";
 
 const Products = () => {
+  const { t } = useTranslation();
   const [location] = useLocation();
   const searchParams = new URLSearchParams(location.split("?")[1] || "");
   
@@ -101,7 +103,7 @@ const Products = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Shop Parts</h1>
+      <h1 className="text-3xl font-bold mb-6">{t("shop_parts_title")}</h1>
       
       {/* Vehicle selector */}
       <div className="mb-8">
@@ -117,21 +119,21 @@ const Products = () => {
           <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200 sticky top-4">
             <h2 className="text-lg font-semibold mb-4 flex items-center">
               <Filter className="mr-2 h-5 w-5" />
-              Filters
+              {t("filters")}
             </h2>
             
             <div className="space-y-6">
               {/* Categories filter */}
               <div>
-                <h3 className="font-medium mb-2">Categories</h3>
+                <h3 className="font-medium mb-2">{t("categories")}</h3>
                 <div className="space-y-2">
                   <div className="flex items-center">
                     <Checkbox
                       id="all-categories"
                       checked={!selectedCategory}
-                      onCheckedChange={() => setSelectedCategory("")}
+                      onCheckedChange={(checked) => setSelectedCategory("")}
                     />
-                    <Label htmlFor="all-categories" className="ml-2">All Categories</Label>
+                    <Label htmlFor="all-categories" className="ml-2">{t("all_categories")}</Label>
                   </div>
                   
                   {isLoadingCategories ? (
@@ -146,11 +148,9 @@ const Products = () => {
                         <Checkbox
                           id={`category-${category.id}`}
                           checked={selectedCategory === category.id.toString()}
-                          onCheckedChange={() => setSelectedCategory(category.id.toString())}
+                          onCheckedChange={(checked) => setSelectedCategory(checked ? category.id.toString() : "")}
                         />
-                        <Label htmlFor={`category-${category.id}`} className="ml-2">
-                          {category.name}
-                        </Label>
+                        <Label htmlFor={`category-${category.id}`} className="ml-2">{category.name}</Label>
                       </div>
                     ))
                   )}
@@ -159,7 +159,7 @@ const Products = () => {
               
               {/* Price Range filter */}
               <div>
-                <h3 className="font-medium mb-2">Price Range</h3>
+                <h3 className="font-medium mb-2">{t("price_range")}</h3>
                 <div className="pt-2 px-2">
                   <Slider
                     value={priceRange}
@@ -169,15 +169,15 @@ const Products = () => {
                     onValueChange={(value) => setPriceRange(value as [number, number])}
                   />
                   <div className="flex justify-between mt-2 text-sm">
-                    <span>${priceRange[0]}</span>
-                    <span>${priceRange[1]}</span>
+                    <span>{priceRange[0]} FCFA</span>
+                    <span>{priceRange[1]} FCFA</span>
                   </div>
                 </div>
               </div>
               
               {/* Other filters */}
               <div>
-                <h3 className="font-medium mb-2">Availability</h3>
+                <h3 className="font-medium mb-2">{t("availability")}</h3>
                 <div className="space-y-2">
                   <div className="flex items-center">
                     <Checkbox
@@ -185,7 +185,7 @@ const Products = () => {
                       checked={showOnlyInStock}
                       onCheckedChange={(checked) => setShowOnlyInStock(!!checked)}
                     />
-                    <Label htmlFor="in-stock" className="ml-2">In Stock Only</Label>
+                    <Label htmlFor="in-stock" className="ml-2">{t("in_stock_only")}</Label>
                   </div>
                   <div className="flex items-center">
                     <Checkbox
@@ -193,7 +193,7 @@ const Products = () => {
                       checked={showOnlySale}
                       onCheckedChange={(checked) => setShowOnlySale(!!checked)}
                     />
-                    <Label htmlFor="on-sale" className="ml-2">On Sale</Label>
+                    <Label htmlFor="on-sale" className="ml-2">{t("on_sale")}</Label>
                   </div>
                 </div>
               </div>
@@ -208,7 +208,7 @@ const Products = () => {
                   setShowOnlySale(false);
                 }}
               >
-                Reset Filters
+                {t("reset_filters")}
               </Button>
             </div>
           </div>
@@ -220,17 +220,17 @@ const Products = () => {
             <SheetTrigger asChild>
               <Button variant="outline" size="sm" className="mb-4">
                 <SlidersHorizontal className="h-4 w-4 mr-2" />
-                Filters
+                Filtres
               </Button>
             </SheetTrigger>
             <SheetContent side="left">
               <SheetHeader>
-                <SheetTitle>Filters</SheetTitle>
+                <SheetTitle>Filtres</SheetTitle>
               </SheetHeader>
               <div className="space-y-6 py-4">
                 {/* Categories filter */}
                 <div>
-                  <h3 className="font-medium mb-2">Categories</h3>
+                  <h3 className="font-medium mb-2">Catégories</h3>
                   <div className="space-y-2">
                     <div className="flex items-center">
                       <Checkbox
@@ -238,7 +238,7 @@ const Products = () => {
                         checked={!selectedCategory}
                         onCheckedChange={() => setSelectedCategory("")}
                       />
-                      <Label htmlFor="mobile-all-categories" className="ml-2">All Categories</Label>
+                      <Label htmlFor="mobile-all-categories" className="ml-2">Toutes les Catégories</Label>
                     </div>
                     
                     {categories.map((category: any) => (
@@ -261,7 +261,7 @@ const Products = () => {
                 
                 {/* Price Range filter */}
                 <div>
-                  <h3 className="font-medium mb-2">Price Range</h3>
+                  <h3 className="font-medium mb-2">Prix</h3>
                   <div className="pt-2 px-2">
                     <Slider
                       value={priceRange}
@@ -279,7 +279,7 @@ const Products = () => {
                 
                 {/* Other filters */}
                 <div>
-                  <h3 className="font-medium mb-2">Availability</h3>
+                  <h3 className="font-medium mb-2">Disponibilité</h3>
                   <div className="space-y-2">
                     <div className="flex items-center">
                       <Checkbox
@@ -287,7 +287,7 @@ const Products = () => {
                         checked={showOnlyInStock}
                         onCheckedChange={(checked) => setShowOnlyInStock(!!checked)}
                       />
-                      <Label htmlFor="mobile-in-stock" className="ml-2">In Stock Only</Label>
+                      <Label htmlFor="mobile-in-stock" className="ml-2">Seulement en stock</Label>
                     </div>
                     <div className="flex items-center">
                       <Checkbox
@@ -295,7 +295,7 @@ const Products = () => {
                         checked={showOnlySale}
                         onCheckedChange={(checked) => setShowOnlySale(!!checked)}
                       />
-                      <Label htmlFor="mobile-on-sale" className="ml-2">On Sale</Label>
+                      <Label htmlFor="mobile-on-sale" className="ml-2">En solde</Label>
                     </div>
                   </div>
                 </div>
@@ -333,7 +333,7 @@ const Products = () => {
               <div className="relative">
                 <Input
                   type="text"
-                  placeholder="Search products..."
+                  placeholder="Recherche"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pr-10"
@@ -351,14 +351,14 @@ const Products = () => {
             
             <Select value={sortBy} onValueChange={setSortBy}>
               <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Sort by" />
+                <SelectValue placeholder={t("sort_by")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="relevance">Relevance</SelectItem>
-                <SelectItem value="price-low">Price: Low to High</SelectItem>
-                <SelectItem value="price-high">Price: High to Low</SelectItem>
-                <SelectItem value="rating">Top Rated</SelectItem>
-                <SelectItem value="newest">Newest</SelectItem>
+                <SelectItem value="relevance">{t("relevance")}</SelectItem>
+                <SelectItem value="price-low">{t("price_low_high")}</SelectItem>
+                <SelectItem value="price-high">{t("price_high_low")}</SelectItem>
+                <SelectItem value="rating">{t("top_rated")}</SelectItem>
+                <SelectItem value="newest">{t("newest")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -395,8 +395,8 @@ const Products = () => {
             </div>
           ) : (
             <div className="text-center py-12">
-              <h3 className="text-xl font-medium mb-2">No products found</h3>
-              <p className="text-gray-600 mb-4">Try adjusting your search or filter criteria</p>
+              <h3 className="text-xl font-medium mb-2">{t("no_products_found")}</h3>
+              <p className="text-gray-600 mb-4">{t("try_adjusting_search")}</p>
               <Button
                 variant="outline"
                 onClick={() => {
@@ -407,7 +407,7 @@ const Products = () => {
                   setShowOnlySale(false);
                 }}
               >
-                Clear All Filters
+                {t("clear_all_filters")}
               </Button>
             </div>
           )}

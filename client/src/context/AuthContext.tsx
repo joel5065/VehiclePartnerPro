@@ -61,15 +61,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       localStorage.setItem("autoparts_user", JSON.stringify(userData));
       
       toast({
-        title: "Success",
-        description: `Welcome back, ${userData.firstName}!`,
+        title: "Connexion réussie",
+        description: `Bienvenue de nouveau, ${userData.firstName}!`,
       });
       
       return true;
     } catch (error) {
       toast({
-        title: "Login Failed",
-        description: "Invalid username or password",
+        title: "Connexion échouée",
+        description: "Nom d'utilisateur ou mot de passe invalide",
         variant: "destructive",
       });
       return false;
@@ -86,15 +86,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       localStorage.setItem("autoparts_user", JSON.stringify(newUser));
       
       toast({
-        title: "Registration Successful",
-        description: `Welcome, ${newUser.firstName}!`,
+        title: "Inscription réussie",
+        description: `Bienvenue, ${newUser.firstName}!`,
       });
       
       return true;
     } catch (error) {
       toast({
-        title: "Registration Failed",
-        description: "Failed to create your account. Please try again.",
+        title: "Inscription échouée",
+        description: "Impossible de créer votre compte. Veuillez réessayer.",
         variant: "destructive",
       });
       return false;
@@ -108,8 +108,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("autoparts_user");
     
     toast({
-      title: "Logged Out",
-      description: "You have been successfully logged out",
+      title: "Déconnexion réussie",
+      description: "Vous avez été déconnecté avec succès",
     });
   };
 

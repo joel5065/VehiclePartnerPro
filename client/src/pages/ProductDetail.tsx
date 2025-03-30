@@ -20,12 +20,14 @@ import {
   RotateCcw,
   CheckCircle2
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const productId = parseInt(id as string);
   const [quantity, setQuantity] = useState(1);
   const { addItem, isLoading: isCartLoading } = useCart();
+  const { t } = useTranslation();
 
   // Fetch product details
   const { data: product, isLoading } = useQuery({
@@ -121,10 +123,10 @@ const ProductDetail = () => {
   if (!product) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
-        <h1 className="text-3xl font-bold mb-4">Product Not Found</h1>
-        <p className="text-gray-600 mb-6">The product you're looking for doesn't exist or has been removed.</p>
+            <h1 className="text-3xl font-bold mb-4">Produit non trouvé</h1>
+        <p className="text-gray-600 mb-6">Le produit que vous recherchez n'existe pas ou a été supprimé.</p>
         <Button asChild>
-          <Link href="/products">Continue Shopping</Link>
+          <Link href="/products">Continuer vos achats</Link>
         </Button>
       </div>
     );
@@ -136,7 +138,7 @@ const ProductDetail = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="mb-4">
         <Link href="/products" className="text-primary hover:underline">
-          &larr; Back to Products
+          &larr; Retour aux Produits
         </Link>
       </div>
       
@@ -152,7 +154,7 @@ const ProductDetail = () => {
               />
             ) : (
               <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
-                <span className="text-gray-400">No image available</span>
+                <span className="text-gray-400">Aucune image disponible</span>
               </div>
             )}
           </div>
@@ -162,14 +164,14 @@ const ProductDetail = () => {
         <div className="md:w-1/2">
           <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
           {product.compatibleVehicles && product.compatibleVehicles.length > 0 && (
-            <p className="text-gray-600 mb-4">Compatible with multiple vehicles</p>
+            <p className="text-gray-600 mb-4">{t("compatible_with_multiple_vehicles")}</p>
           )}
           
           <div className="flex items-center mb-4">
             <div className="flex">
               {renderStars(product.rating)}
             </div>
-            <span className="text-sm text-gray-600 ml-2">({product.reviewCount} reviews)</span>
+            <span className="text-sm text-gray-600 ml-2">({product.reviewCount} {t("reviews")})</span>
           </div>
           
           <div className="mb-6">
@@ -177,7 +179,7 @@ const ProductDetail = () => {
               <div className="flex items-center">
                 <span className="text-2xl font-bold mr-3">{formatPrice(product.salePrice)}</span>
                 <span className="text-lg text-gray-500 line-through">{formatPrice(product.price)}</span>
-                <Badge className="ml-3 bg-primary">Sale</Badge>
+                <Badge className="ml-3 bg-primary">{t("sale")}</Badge>
               </div>
             ) : (
               <span className="text-2xl font-bold">{formatPrice(product.price)}</span>
@@ -185,27 +187,27 @@ const ProductDetail = () => {
           </div>
           
           <div className="prose max-w-none mb-6">
-            <p>{product.description}</p>
+            <p>{t(`product_description_${product.id}`)}</p>
           </div>
           
           <div className="mb-6">
             <div className="flex items-center text-sm text-gray-600 mb-2">
               <ShieldCheck className="h-5 w-5 mr-2 text-green-500" />
-              <span>Guaranteed fit for your vehicle</span>
+              <span>{t("guaranteed_fit")}</span>
             </div>
             <div className="flex items-center text-sm text-gray-600 mb-2">
               <Truck className="h-5 w-5 mr-2 text-green-500" />
-              <span>Free shipping on orders over $50</span>
+              <span>{t("free_shipping_over_50")}</span>
             </div>
             <div className="flex items-center text-sm text-gray-600">
               <RotateCcw className="h-5 w-5 mr-2 text-green-500" />
-              <span>90-day returns</span>
+              <span>{t("ninety_day_returns")}</span>
             </div>
           </div>
           
           <Card className="mb-6 p-4 bg-gray-50">
             <div className="flex items-center">
-              <span className="mr-4">Quantity:</span>
+              <span className="mr-4">Quantité:</span>
               <div className="flex items-center border rounded-md">
                 <Button 
                   variant="ghost" 
@@ -247,7 +249,7 @@ const ProductDetail = () => {
               {isCartLoading ? "Adding..." : "Add to Cart"}
             </Button>
             <Button asChild variant="outline" className="h-12" size="lg">
-              <Link href="/maintenance">Find Maintenance Schedule</Link>
+              <Link href="/maintenance">Trouver le Plan de Maintenance</Link>
             </Button>
           </div>
         </div>
@@ -257,43 +259,43 @@ const ProductDetail = () => {
       <div className="mb-12">
         <Tabs defaultValue="details">
           <TabsList className="w-full justify-start">
-            <TabsTrigger value="details">Details</TabsTrigger>
-            <TabsTrigger value="specifications">Specifications</TabsTrigger>
-            <TabsTrigger value="fitment">Vehicle Fitment</TabsTrigger>
-            <TabsTrigger value="reviews">Reviews</TabsTrigger>
+            <TabsTrigger value="details">{t("details")}</TabsTrigger>
+            <TabsTrigger value="specifications">{t("specifications")}</TabsTrigger>
+            <TabsTrigger value="fitment">{t("vehicle_fitment")}</TabsTrigger>
+            <TabsTrigger value="reviews">{t("reviews")}</TabsTrigger>
           </TabsList>
           <TabsContent value="details" className="pt-4">
             <div className="prose max-w-none">
-              <h3>Product Details</h3>
-              <p>{product.description}</p>
+              <h3>{t("product_details")}</h3>
+              <p>{t(`product_description_${product.id}`)}</p>
               <ul>
-                <li>High-quality construction</li>
-                <li>Built to OEM specifications</li>
-                <li>Rigorously tested for performance and durability</li>
-                <li>Easy installation</li>
+                <li>{t("high_quality_construction")}</li>
+                <li>{t("oem_specifications")}</li>
+                <li>{t("rigorously_tested")}</li>
+                <li>{t("easy_installation")}</li>
               </ul>
             </div>
           </TabsContent>
           <TabsContent value="specifications" className="pt-4">
             <div className="prose max-w-none">
-              <h3>Specifications</h3>
+              <h3>{t("specifications")}</h3>
               <table className="w-full">
                 <tbody>
                   <tr>
-                    <td className="font-semibold pr-4 py-2">Brand</td>
+                    <td className="font-semibold pr-4 py-2">{t("brand")}</td>
                     <td>AutoParts Plus</td>
                   </tr>
                   <tr>
-                    <td className="font-semibold pr-4 py-2">Part Number</td>
+                    <td className="font-semibold pr-4 py-2">{t("part_number")}</td>
                     <td>AP-{product.id.toString().padStart(6, '0')}</td>
                   </tr>
                   <tr>
-                    <td className="font-semibold pr-4 py-2">Warranty</td>
-                    <td>1 Year Limited Warranty</td>
+                    <td className="font-semibold pr-4 py-2">{t("warranty")}</td>
+                    <td>{t("one_year_warranty")}</td>
                   </tr>
                   <tr>
-                    <td className="font-semibold pr-4 py-2">Material</td>
-                    <td>Premium Quality Materials</td>
+                    <td className="font-semibold pr-4 py-2">{t("material")}</td>
+                    <td>{t("premium_quality_materials")}</td>
                   </tr>
                 </tbody>
               </table>
@@ -301,24 +303,24 @@ const ProductDetail = () => {
           </TabsContent>
           <TabsContent value="fitment" className="pt-4">
             <div className="prose max-w-none">
-              <h3>Vehicle Compatibility</h3>
-              <p>This product is compatible with the following vehicles:</p>
+              <h3>Compatibilité des Véhicules</h3>
+              <p>Ce produit est compatible avec les véhicules suivants:</p>
               <ul>
                 <li>Toyota Camry (2018-2022)</li>
                 <li>Toyota Corolla (2019-2022)</li>
                 <li>Toyota RAV4 (2019-2022)</li>
-                <li>And more - use the vehicle selector to check compatibility with your specific vehicle</li>
+                <li>Et plus - utilisez le sélecteur de véhicule pour vérifier la compatibilité avec votre véhicule spécifique</li>
               </ul>
             </div>
           </TabsContent>
           <TabsContent value="reviews" className="pt-4">
             <div className="prose max-w-none">
-              <h3>Customer Reviews</h3>
+              <h3>Avis des Clients</h3>
               <div className="flex items-center mb-4">
                 <div className="flex mr-2">
                   {renderStars(product.rating)}
                 </div>
-                <span className="text-sm text-gray-600">Based on {product.reviewCount} reviews</span>
+                <span className="text-sm text-gray-600">Basé sur {product.reviewCount} avis</span>
               </div>
               
               <Separator className="my-4" />
@@ -332,9 +334,9 @@ const ProductDetail = () => {
                       ))}
                     </div>
                     <span className="font-medium">John D.</span>
-                    <span className="text-sm text-gray-500 ml-2">Verified Purchase</span>
+                    <span className="text-sm text-gray-500 ml-2">Avis vérifié</span>
                   </div>
-                  <p className="text-sm">Perfect fit for my Toyota Camry. Easy to install and works great.</p>
+                  <p className="text-sm">Parfait pour mon Toyota Camry. Facile à installer et fonctionne très bien.</p>
                 </div>
                 <Separator />
                 <div>
@@ -345,9 +347,9 @@ const ProductDetail = () => {
                       ))}
                     </div>
                     <span className="font-medium">Sarah M.</span>
-                    <span className="text-sm text-gray-500 ml-2">Verified Purchase</span>
+                    <span className="text-sm text-gray-500 ml-2">Avis vérifié</span>
                   </div>
-                  <p className="text-sm">Good quality product. Shipping was fast.</p>
+                  <p className="text-sm">Produit de qualité. Le transport était rapide.</p>
                 </div>
                 <Separator />
                 <div>
@@ -358,9 +360,9 @@ const ProductDetail = () => {
                       ))}
                     </div>
                     <span className="font-medium">Robert L.</span>
-                    <span className="text-sm text-gray-500 ml-2">Verified Purchase</span>
+                     <span className="text-sm text-gray-500 ml-2">Avis vérifié</span>
                   </div>
-                  <p className="text-sm">Exactly what I needed. This is the third time I've ordered from AutoParts Plus and they never disappoint.</p>
+                  <p className="text-sm">Exactement ce dont j'avais besoin. C'est la troisième fois que je commande chez AutoParts Plus et ils ne m'ont jamais déçus.</p>
                 </div>
               </div>
             </div>
@@ -370,7 +372,7 @@ const ProductDetail = () => {
       
       {/* Related Products */}
       <div>
-        <h2 className="text-2xl font-bold mb-6">Related Products</h2>
+        <h2 className="text-2xl font-bold mb-6">Produits Relatifs</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {relatedProducts.map((relatedProduct: any) => (
             <ProductCard key={relatedProduct.id} product={relatedProduct} />

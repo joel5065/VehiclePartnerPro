@@ -47,36 +47,36 @@ const Maintenance = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">Vehicle Maintenance Planner</h1>
-          <p className="text-gray-600">Keep your vehicle in top condition with a personalized maintenance schedule</p>
+          <h1 className="text-3xl font-bold mb-2">Planificateur de Maintenance de Véhicules</h1>
+          <p className="text-gray-600">Gardez votre véhicule en bon état avec un plan de maintenance personnalisé</p>
         </div>
         
         {!isAuthenticated ? (
-          <Alert variant="warning" className="mb-8">
+          <Alert variant="default" className="mb-8">
             <AlertCircle className="h-4 w-4" />
-            <AlertTitle>Authentication Required</AlertTitle>
+            <AlertTitle>Authentification Requise</AlertTitle>
             <AlertDescription>
-              Please <a href="/login" className="font-medium underline">sign in</a> or <a href="/register" className="font-medium underline">register</a> to create a personalized maintenance plan.
+              Veuillez <a href="/login" className="font-medium underline">vous connecter</a> ou <a href="/register" className="font-medium underline">vous enregistrer</a> pour créer un plan de maintenance personnalisé.
             </AlertDescription>
           </Alert>
         ) : (
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-2 mb-8">
-              <TabsTrigger value="register">Register Vehicle</TabsTrigger>
+              <TabsTrigger value="register">Enregistrer un Véhicule</TabsTrigger>
               <TabsTrigger value="schedule" disabled={userVehicles.length === 0 && !selectedVehicleId}>
-                Maintenance Schedule
+                Plan de Maintenance
               </TabsTrigger>
             </TabsList>
             
             <TabsContent value="register">
               <div className="mb-8">
-                <h2 className="text-xl font-semibold mb-4">Register New Vehicle</h2>
+                <h2 className="text-xl font-semibold mb-4">Enregistrer un Nouveau Véhicule</h2>
                 <VehicleRegistrationForm onSubmitSuccess={handleVehicleRegistered} />
               </div>
               
               {userVehicles.length > 0 && (
                 <div>
-                  <h2 className="text-xl font-semibold mb-4">Your Registered Vehicles</h2>
+                  <h2 className="text-xl font-semibold mb-4">Vos Véhicules Enregistrés</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {isLoadingVehicles ? (
                       Array(2).fill(0).map((_, i) => (
@@ -112,7 +112,7 @@ const Maintenance = () => {
                               className="w-full mt-4"
                               variant={vehicle.id === selectedVehicleId ? "default" : "outline"}
                             >
-                              View Maintenance Schedule
+                              Voir le Plan de Maintenance
                             </Button>
                           </CardContent>
                         </Card>
@@ -136,17 +136,17 @@ const Maintenance = () => {
                 </div>
               ) : selectedVehicleId ? (
                 <div>
-                  <h2 className="text-xl font-semibold mb-4">Your Maintenance Schedule</h2>
+                  <h2 className="text-xl font-semibold mb-4">Votre Plan de Maintenance</h2>
                   <p className="text-gray-600 mb-6">
-                    Based on your vehicle information and driving habits, here's your recommended maintenance schedule:
+                    Basé sur vos informations de véhicule et vos habitudes de conduite, voici votre plan de maintenance recommandé:
                   </p>
                   <MaintenanceSchedule schedule={schedule} />
                 </div>
               ) : (
                 <div className="text-center py-12">
-                  <h3 className="text-xl font-medium mb-2">No Vehicle Selected</h3>
-                  <p className="text-gray-600 mb-4">Please register a vehicle or select one from your list to view the maintenance schedule.</p>
-                  <Button onClick={() => setActiveTab("register")}>Register a Vehicle</Button>
+                  <h3 className="text-xl font-medium mb-2">Aucun Véhicule Sélectionné</h3>
+                  <p className="text-gray-600 mb-4">Veuillez enregistrer un véhicule ou en sélectionner un de votre liste pour voir le plan de maintenance.</p>
+                  <Button onClick={() => setActiveTab("register")}>Enregistrer un Véhicule</Button>
                 </div>
               )}
             </TabsContent>

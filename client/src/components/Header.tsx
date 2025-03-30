@@ -60,7 +60,7 @@ const Header = () => {
       <div className="container mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
         <div className="flex items-center mb-3 md:mb-0">
           <Link href="/" className="text-2xl font-bold">
-            <span className="text-primary">Auto</span> Parts <span className="text-amber-500">CI</span>
+            <span className="text-primary">Auto</span> Pièces de véhicule<span className="text-amber-500">CI</span>
           </Link>
         </div>
         
@@ -150,12 +150,12 @@ const Header = () => {
                 <ChevronDown className="ml-1 h-4 w-4" />
               </div>
               <div className="absolute left-0 mt-0 w-48 bg-white text-gray-800 shadow-lg rounded-md hidden group-hover:block z-10">
-                <Link href="/products?category=1" className="block px-4 py-2 hover:bg-gray-100">{t("oil_fluids")}</Link>
+                <Link href="/products?category=1" className="block px-4 py-2 hover:bg-gray-100">{t("huile_et_fluides")}</Link>
                 <Link href="/products?category=2" className="block px-4 py-2 hover:bg-gray-100">{t("batteries")}</Link>
-                <Link href="/products?category=3" className="block px-4 py-2 hover:bg-gray-100">{t("engine_parts")}</Link>
-                <Link href="/products?category=4" className="block px-4 py-2 hover:bg-gray-100">{t("brakes")}</Link>
-                <Link href="/products?category=5" className="block px-4 py-2 hover:bg-gray-100">{t("electrical")}</Link>
-                <Link href="/products?category=6" className="block px-4 py-2 hover:bg-gray-100">{t("filters")}</Link>
+                <Link href="/products?category=3" className="block px-4 py-2 hover:bg-gray-100">{t("pièces_moteur")}</Link>
+                <Link href="/products?category=4" className="block px-4 py-2 hover:bg-gray-100">{t("freins")}</Link>
+                <Link href="/products?category=5" className="block px-4 py-2 hover:bg-gray-100">{t("électrique")}</Link>
+                <Link href="/products?category=6" className="block px-4 py-2 hover:bg-gray-100">{t("filtres")}</Link>
               </div>
             </li>
             <li className="relative group">

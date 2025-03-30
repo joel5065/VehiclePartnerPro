@@ -23,21 +23,21 @@ const Home = () => {
   // Testimonials data
   const testimonials = [
     {
-      text: "The maintenance schedule is incredibly helpful. I've saved so much money by doing the recommended services at the right times. Plus, the parts are high quality and fit perfectly.",
+      text: "Le plan de maintenance est incroyablement utile. J'ai économisé beaucoup d'argent en faisant les services recommandés aux bon moments. Plus, les pièces sont de haute qualité et s'adaptent parfaitement.",
       author: "Robert Johnson",
       vehicle: "Toyota Camry",
       rating: 5,
       avatarUrl: "https://randomuser.me/api/portraits/men/32.jpg"
     },
     {
-      text: "Fast shipping and the parts arrived exactly as described. The maintenance reminders are a lifesaver - I never miss an oil change now. Great customer service too!",
+      text: "Livraison rapide et les pièces sont arrivées exactement comme décrites. Les rappels de maintenance sont un sauveur - je ne manque jamais un changement d'huile maintenant. Service client excellent!",
       author: "Sarah Williams",
       vehicle: "Honda Civic",
       rating: 4,
       avatarUrl: "https://randomuser.me/api/portraits/women/44.jpg"
     },
     {
-      text: "As someone who knows very little about cars, this site has been invaluable. The maintenance schedule is clear and the DIY guides have helped me handle simple tasks myself.",
+      text: "Comme quelqu'un qui ne sait pas grand-chose de voitures, ce site m'a été précieux. Le plan de maintenance est clair et les guides DIY m'ont aidé à gérer des tâches simples moi-même.",
       author: "Michael Chen",
       vehicle: "Ford Explorer",
       rating: 5,
@@ -58,22 +58,22 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Quality Parts & Custom Maintenance Plans</h1>
-              <p className="text-lg mb-6">Get the right parts for your vehicle and a personalized maintenance schedule to keep it running smoothly.</p>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Pièces de Voitures de Qualité & Plans de Maintenance Personnalisés</h1>
+              <p className="text-lg mb-6">Obtenez les bonnes pièces pour votre véhicule et un plan de maintenance personnalisé pour le garder en bon état.</p>
               <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
                 <Button
                   asChild
                   size="lg"
                   className="bg-primary hover:bg-red-600 text-white font-medium py-3 px-6 rounded-md"
                 >
-                  <Link href="/products">Shop Parts</Link>
+                  <Link href="/products">Achat Pièces de Voitures</Link>
                 </Button>
                 <Button
                   asChild
                   size="lg"
                   className="bg-amber-500 hover:bg-amber-600 text-white font-medium py-3 px-6 rounded-md"
                 >
-                  <Link href="/maintenance">Create Maintenance Plan</Link>
+                  <Link href="/maintenance">Créer votre plan de Maintenance</Link>
                 </Button>
               </div>
             </div>
@@ -100,7 +100,7 @@ const Home = () => {
       {/* Categories Section */}
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-8 text-center">Popular Categories</h2>
+          <h2 className="text-2xl font-bold mb-8 text-center">Catégories Populaires</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {isLoadingCategories ? (
               Array(6).fill(0).map((_, i) => (
@@ -122,7 +122,7 @@ const Home = () => {
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl font-bold">Featured Products</h2>
+            <h2 className="text-2xl font-bold">Produits en vedette</h2>
             <div className="flex space-x-2">
               <Button variant="ghost" size="icon">
                 <ChevronLeft className="h-5 w-5" />
@@ -166,7 +166,7 @@ const Home = () => {
               variant="outline"
               className="border border-primary text-primary hover:bg-primary hover:text-white"
             >
-              <Link href="/products">View All Products</Link>
+              <Link href="/products">Voir tous les produits</Link>
             </Button>
           </div>
         </div>
@@ -176,8 +176,8 @@ const Home = () => {
       <section id="maintenance-preview" className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold mb-2">Sample Maintenance Schedule</h2>
-            <p className="text-gray-600">Here's what your personalized maintenance plan will look like</p>
+            <h2 className="text-2xl font-bold mb-2">Plan de Maintenance d'Exemple</h2>
+            <p className="text-gray-600">Voici à quoi ressemblera votre plan de maintenance personnalisé</p>
           </div>
           
           <div className="overflow-x-auto">
@@ -254,27 +254,27 @@ const Home = () => {
           </div>
           
           <div className="mt-8 max-w-3xl mx-auto bg-gray-50 p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-semibold mb-3">Your Personalized Plan Includes:</h3>
+            <h3 className="text-lg font-semibold mb-3">Votre Plan Personnalisé Comprend:</h3>
             <ul className="space-y-2">
               <li className="flex items-start">
                 <Check className="text-green-500 mt-1 mr-2 h-5 w-5" />
-                <span>Detailed maintenance schedule based on your vehicle and driving habits</span>
+                <span>Plan de maintenance détaillé basé sur votre véhicule et vos habitudes de conduite</span>
               </li>
               <li className="flex items-start">
                 <Check className="text-green-500 mt-1 mr-2 h-5 w-5" />
-                <span>Email or text reminders when service is due</span>
+                <span>Rappels par email ou texte lorsque le service est dû</span>
               </li>
               <li className="flex items-start">
                 <Check className="text-green-500 mt-1 mr-2 h-5 w-5" />
-                <span>Service history tracking and record keeping</span>
+                <span>Suivi de l'historique de service et de l'enregistrement</span>
               </li>
               <li className="flex items-start">
                 <Check className="text-green-500 mt-1 mr-2 h-5 w-5" />
-                <span>Recommended parts for your specific vehicle</span>
+                <span>Pièces recommandées pour votre véhicule spécifique</span>
               </li>
               <li className="flex items-start">
                 <Check className="text-green-500 mt-1 mr-2 h-5 w-5" />
-                <span>DIY guides and video tutorials for common maintenance tasks</span>
+                <span>Guides DIY et tutoriels vidéo pour les tâches de maintenance courantes</span>
               </li>
             </ul>
           </div>
@@ -284,7 +284,7 @@ const Home = () => {
       {/* Testimonials Section */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-8 text-center">What Our Customers Say</h2>
+          <h2 className="text-2xl font-bold mb-8 text-center">Ce Que Nos Clients Disent</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard key={index} testimonial={testimonial} />
@@ -296,15 +296,15 @@ const Home = () => {
       {/* Call to Action Section */}
       <section className="py-12 bg-secondary text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Keep Your Vehicle in Top Shape?</h2>
-          <p className="text-lg mb-8 max-w-3xl mx-auto">Get quality parts delivered to your door and never miss important maintenance with your personalized service schedule.</p>
+          <h2 className="text-3xl font-bold mb-4">Prêt à garder votre véhicule en bon état?</h2>
+          <p className="text-lg mb-8 max-w-3xl mx-auto">Obtenez des pièces de qualité livrées à votre porte et n'oubliez jamais les importantes tâches de maintenance avec votre plan de service personnalisé.</p>
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <Button
               asChild
               size="lg"
               className="bg-primary hover:bg-red-600 text-white"
             >
-              <Link href="/products">Shop Parts Now</Link>
+              <Link href="/products">Acheter des pièces maintenant</Link>
             </Button>
             <Button
               asChild
@@ -312,7 +312,7 @@ const Home = () => {
               variant="outline"
               className="bg-white hover:bg-gray-100 text-secondary"
             >
-              <Link href="/maintenance">Create Maintenance Plan</Link>
+              <Link href="/maintenance">Créer votre plan de Maintenance</Link>
             </Button>
           </div>
         </div>

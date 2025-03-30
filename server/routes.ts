@@ -1,6 +1,6 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import { IStorage } from "./storage";
 import { z } from "zod";
 import {
   insertUserSchema,
@@ -10,7 +10,7 @@ import {
   insertOrderItemSchema,
 } from "@shared/schema";
 
-export async function registerRoutes(app: Express): Promise<Server> {
+export function registerRoutes(app: Express, storage: IStorage): Server {
   // All API routes prefixed with /api
   
   // Categories API
@@ -350,6 +350,5 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json(updatedOrder);
   });
 
-  const httpServer = createServer(app);
-  return httpServer;
+  return createServer(app);
 }

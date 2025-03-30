@@ -67,10 +67,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
           />
         )}
         {product.isTopRated && (
-          <Badge className="absolute top-2 right-2 bg-amber-500">Top Rated</Badge>
+          <Badge className="absolute top-2 right-2 bg-amber-500">Top Vente </Badge>
         )}
         {product.isOnSale && (
-          <Badge className="absolute top-2 right-2 bg-primary">Sale</Badge>
+          <Badge className="absolute top-2 right-2 bg-primary">Vente</Badge>
         )}
       </div>
       <CardContent className="p-4">
@@ -104,7 +104,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             className="bg-primary hover:bg-red-600 text-white"
             onClick={handleAddToCart}
           >
-            Add to Cart
+            Ajouter au panier
           </Button>
         </div>
       </CardContent>

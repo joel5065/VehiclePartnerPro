@@ -25,7 +25,7 @@ const MaintenanceSchedule = ({ schedule, className = "" }: MaintenanceSchedulePr
             <th className="py-3 px-4 text-left font-semibold text-gray-700 border-b">Service</th>
             {intervals.map(interval => (
               <th key={interval} className="py-3 px-4 text-left font-semibold text-gray-700 border-b">
-                {interval} miles
+                {interval} km 
               </th>
             ))}
           </tr>
@@ -49,27 +49,27 @@ const MaintenanceSchedule = ({ schedule, className = "" }: MaintenanceSchedulePr
       </table>
       
       <div className="mt-8 max-w-3xl mx-auto bg-gray-50 p-6 rounded-lg border border-gray-200">
-        <h3 className="text-lg font-semibold mb-3">Your Personalized Plan Includes:</h3>
+        <h3 className="text-lg font-semibold mb-3">Votre plan personnalisé inclut:</h3>
         <ul className="space-y-2">
           <li className="flex items-start">
             <Check className="text-green-500 mt-1 mr-2 h-5 w-5" />
-            <span>Detailed maintenance schedule based on your vehicle and driving habits</span>
+            <span>Plan de maintenance détaillé basé sur votre véhicule et vos habitudes de conduite</span>
           </li>
           <li className="flex items-start">
             <Check className="text-green-500 mt-1 mr-2 h-5 w-5" />
-            <span>Email or text reminders when service is due</span>
+            <span>Rappels par email ou texte lorsque le service est dû</span>
           </li>
           <li className="flex items-start">
             <Check className="text-green-500 mt-1 mr-2 h-5 w-5" />
-            <span>Service history tracking and record keeping</span>
+            <span>Suivi et enregistrement de l'historique de service</span>
           </li>
           <li className="flex items-start">
             <Check className="text-green-500 mt-1 mr-2 h-5 w-5" />
-            <span>Recommended parts for your specific vehicle</span>
+            <span>Pièces recommandées pour votre véhicule spécifique</span>
           </li>
           <li className="flex items-start">
             <Check className="text-green-500 mt-1 mr-2 h-5 w-5" />
-            <span>DIY guides and video tutorials for common maintenance tasks</span>
+            <span>Guides DIY et tutoriels vidéo pour les tâches de maintenance courantes</span>
           </li>
         </ul>
       </div>

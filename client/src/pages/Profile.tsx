@@ -17,9 +17,9 @@ import { getUserVehicles } from "../lib/api";
 import { AlertCircle, Car } from "lucide-react";
 
 const profileFormSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Invalid email address"),
+  firstName: z.string().min(1, "Nom de famille est requis"),
+  lastName: z.string().min(1, "Nom de famille est requis"),
+  email: z.string().email("Adresse email invalide"),
   phone: z.string().optional(),
   address: z.string().optional(),
   city: z.string().optional(),
@@ -28,11 +28,11 @@ const profileFormSchema = z.object({
 });
 
 const passwordFormSchema = z.object({
-  currentPassword: z.string().min(1, "Current password is required"),
-  newPassword: z.string().min(6, "New password must be at least 6 characters"),
-  confirmPassword: z.string().min(1, "Please confirm your password"),
+  currentPassword: z.string().min(1, "Mot de passe actuel est requis"),
+  newPassword: z.string().min(6, "Nouveau mot de passe doit contenir au moins 6 caractères"),
+  confirmPassword: z.string().min(1, "Veuillez confirmer votre mot de passe"),
 }).refine((data) => data.newPassword === data.confirmPassword, {
-  message: "Passwords do not match",
+  message: "Les mots de passe ne correspondent pas",
   path: ["confirmPassword"],
 });
 
@@ -85,8 +85,8 @@ const Profile = () => {
     // For now, we'll just show a success toast
     setTimeout(() => {
       toast({
-        title: "Profile Updated",
-        description: "Your profile information has been updated.",
+        title: "Profil mis à jour",
+        description: "Vos informations de profil ont été mises à jour.",
       });
       setIsUpdating(false);
     }, 1000);
@@ -99,8 +99,8 @@ const Profile = () => {
     // For now, we'll just show a success toast
     setTimeout(() => {
       toast({
-        title: "Password Changed",
-        description: "Your password has been successfully updated.",
+        title: "Mot de passe changé",
+        description: "Votre mot de passe a été mis à jour avec succès.",
       });
       passwordForm.reset();
       setIsUpdating(false);
@@ -109,7 +109,7 @@ const Profile = () => {
   
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">My Account</h1>
+      <h1 className="text-3xl font-bold mb-6">Mon Compte</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Left Sidebar */}
@@ -131,13 +131,13 @@ const Profile = () => {
               <Tabs value={activeTab} onValueChange={setActiveTab} orientation="vertical">
                 <TabsList className="flex flex-col h-auto">
                   <TabsTrigger value="details" className="justify-start">
-                    Account Details
+                    Détails du compte
                   </TabsTrigger>
                   <TabsTrigger value="password" className="justify-start">
-                    Password
+                    Mot de passe
                   </TabsTrigger>
                   <TabsTrigger value="vehicles" className="justify-start">
-                    My Vehicles
+                    Mes véhicules
                   </TabsTrigger>
                 </TabsList>
               </Tabs>
@@ -149,7 +149,7 @@ const Profile = () => {
                 className="w-full text-red-500 hover:text-red-600 hover:bg-red-50"
                 onClick={logout}
               >
-                Sign Out
+                Se déconnecter
               </Button>
             </CardContent>
           </Card>
@@ -161,8 +161,8 @@ const Profile = () => {
             <TabsContent value="details">
               <Card>
                 <CardHeader>
-                  <CardTitle>Account Details</CardTitle>
-                  <CardDescription>Update your account information</CardDescription>
+                  <CardTitle>Détails du compte</CardTitle>
+                  <CardDescription>Mettre à jour vos informations de compte</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <Form {...profileForm}>
@@ -173,7 +173,7 @@ const Profile = () => {
                           name="firstName"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>First Name</FormLabel>
+                              <FormLabel>Nom</FormLabel>
                               <FormControl>
                                 <Input {...field} />
                               </FormControl>
@@ -187,7 +187,7 @@ const Profile = () => {
                           name="lastName"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Last Name</FormLabel>
+                              <FormLabel>Nom de famille</FormLabel>
                               <FormControl>
                                 <Input {...field} />
                               </FormControl>
@@ -202,7 +202,7 @@ const Profile = () => {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Email</FormLabel>
+                              <FormLabel>Email</FormLabel>
                             <FormControl>
                               <Input {...field} />
                             </FormControl>
@@ -216,7 +216,7 @@ const Profile = () => {
                         name="phone"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Phone</FormLabel>
+                            <FormLabel>Téléphone</FormLabel>
                             <FormControl>
                               <Input {...field} />
                             </FormControl>
@@ -228,14 +228,14 @@ const Profile = () => {
                       <Separator />
                       
                       <div>
-                        <h3 className="font-medium mb-3">Address Information</h3>
+                        <h3 className="font-medium mb-3">Informations de l'adresse</h3>
                         
                         <FormField
                           control={profileForm.control}
                           name="address"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Address</FormLabel>
+                              <FormLabel>Adresse</FormLabel>
                               <FormControl>
                                 <Input {...field} />
                               </FormControl>
@@ -250,7 +250,7 @@ const Profile = () => {
                             name="city"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>City</FormLabel>
+                                <FormLabel>Ville</FormLabel>
                                 <FormControl>
                                   <Input {...field} />
                                 </FormControl>
@@ -264,7 +264,7 @@ const Profile = () => {
                             name="state"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>State</FormLabel>
+                                <FormLabel>État</FormLabel>
                                 <FormControl>
                                   <Input {...field} />
                                 </FormControl>
@@ -278,7 +278,7 @@ const Profile = () => {
                             name="zipCode"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>ZIP Code</FormLabel>
+                                <FormLabel>Code postal</FormLabel>
                                 <FormControl>
                                   <Input {...field} />
                                 </FormControl>
@@ -294,7 +294,7 @@ const Profile = () => {
                         className="bg-primary hover:bg-red-600"
                         disabled={isUpdating}
                       >
-                        {isUpdating ? "Updating..." : "Update Profile"}
+                        {isUpdating ? "Mise à jour en cours..." : "Mettre à jour le profil"}
                       </Button>
                     </form>
                   </Form>
@@ -305,8 +305,8 @@ const Profile = () => {
             <TabsContent value="password">
               <Card>
                 <CardHeader>
-                  <CardTitle>Change Password</CardTitle>
-                  <CardDescription>Update your account password</CardDescription>
+                  <CardTitle>Changer le mot de passe</CardTitle>
+                  <CardDescription>Mettre à jour votre mot de passe de compte</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <Form {...passwordForm}>
@@ -316,7 +316,7 @@ const Profile = () => {
                         name="currentPassword"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Current Password</FormLabel>
+                            <FormLabel>Mot de passe actuel</FormLabel>
                             <FormControl>
                               <Input type="password" {...field} />
                             </FormControl>
@@ -330,7 +330,7 @@ const Profile = () => {
                         name="newPassword"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>New Password</FormLabel>
+                            <FormLabel>Nouveau mot de passe</FormLabel>
                             <FormControl>
                               <Input type="password" {...field} />
                             </FormControl>
@@ -344,7 +344,7 @@ const Profile = () => {
                         name="confirmPassword"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Confirm New Password</FormLabel>
+                            <FormLabel>Confirmer le nouveau mot de passe</FormLabel>
                             <FormControl>
                               <Input type="password" {...field} />
                             </FormControl>
@@ -353,11 +353,11 @@ const Profile = () => {
                         )}
                       />
                       
-                      <Alert variant="warning" className="mt-4">
+                      <Alert variant="default" className="mt-4">
                         <AlertCircle className="h-4 w-4" />
                         <AlertTitle>Important</AlertTitle>
                         <AlertDescription>
-                          After changing your password, you'll be logged out and will need to log in again.
+                          Après avoir changé votre mot de passe, vous serez déconnecté et devrez vous reconnecter.
                         </AlertDescription>
                       </Alert>
                       
@@ -366,7 +366,7 @@ const Profile = () => {
                         className="bg-primary hover:bg-red-600 mt-4"
                         disabled={isUpdating}
                       >
-                        {isUpdating ? "Updating..." : "Change Password"}
+                        {isUpdating ? "Mise à jour en cours..." : "Changer le mot de passe"}
                       </Button>
                     </form>
                   </Form>
@@ -377,17 +377,17 @@ const Profile = () => {
             <TabsContent value="vehicles">
               <Card>
                 <CardHeader>
-                  <CardTitle>My Vehicles</CardTitle>
-                  <CardDescription>Manage your registered vehicles</CardDescription>
+                  <CardTitle>Mes véhicules</CardTitle>
+                  <CardDescription>Gerer vos véhicules enregistrés</CardDescription>
                 </CardHeader>
                 <CardContent>
                   {userVehicles.length === 0 ? (
                     <div className="text-center py-8">
                       <Car className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-lg font-medium mb-2">No Vehicles Registered</h3>
-                      <p className="text-gray-600 mb-4">You haven't registered any vehicles yet.</p>
+                      <h3 className="text-lg font-medium mb-2">Aucun véhicule enregistré</h3>
+                      <p className="text-gray-600 mb-4">Vous n'avez pas encore enregistré de véhicules.</p>
                       <Button asChild>
-                        <a href="/maintenance">Register a Vehicle</a>
+                        <a href="/maintenance">Enregistrer un véhicule</a>
                       </Button>
                     </div>
                   ) : (
@@ -401,7 +401,7 @@ const Profile = () => {
                                   {vehicle.year} {vehicle.makeName} {vehicle.modelName}
                                 </h3>
                                 <p className="text-gray-600 text-sm">
-                                  Mileage: {vehicle.mileage.toLocaleString()} miles
+                                  Kilométrage: {vehicle.mileage.toLocaleString()} km
                                 </p>
                                 {vehicle.engineName && (
                                   <p className="text-gray-600 text-sm">{vehicle.engineName}</p>
@@ -409,7 +409,7 @@ const Profile = () => {
                               </div>
                               <div className="flex space-x-2">
                                 <Button asChild variant="outline" size="sm">
-                                  <a href={`/maintenance?vehicle=${vehicle.id}`}>View Schedule</a>
+                                  <a href={`/maintenance?vehicle=${vehicle.id}`}>Voir le plan</a>
                                 </Button>
                               </div>
                             </div>
@@ -419,7 +419,7 @@ const Profile = () => {
                       
                       <div className="mt-4">
                         <Button asChild>
-                          <a href="/maintenance">Register New Vehicle</a>
+                          <a href="/maintenance">Enregistrer un nouveau véhicule</a>
                         </Button>
                       </div>
                     </div>
